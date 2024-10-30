@@ -72,7 +72,7 @@ import {
     SidebarProvider,
     SidebarTrigger,
 } from "@/components/ui/sidebar"
-import { auth, signIn, signOut } from '@/services/auth'
+
 import { DashboardSideBarInsetHeader } from './dashboardSideBarInsetHeader/dashboardSideBarInsetHeader'
 import { DasboardSidebarFooter } from './dasboardSidebarFooter/dasboardSidebarFooter'
 
@@ -87,42 +87,26 @@ export default function DashboardLayout({ children, session }: any) {
         },
         navMain: [
             {
-                title: "Playground",
-                url: "#",
+                title: "Dashboard",
+                url: "/dashboard",
                 icon: SquareTerminal,
                 isActive: true,
-                items: [
-                    {
-                        title: "History",
-                        url: "#",
-                    },
-                    {
-                        title: "Starred",
-                        url: "#",
-                    },
-                    {
-                        title: "Settings",
-                        url: "#",
-                    },
-                ],
+
             },
             {
-                title: "Models",
+                title: "Contatos",
                 url: "#",
                 icon: Bot,
                 items: [
                     {
-                        title: "Genesis",
+                        title: "Novo Contato",
                         url: "#",
                     },
                     {
-                        title: "Explorer",
+                        title: "Contatos ",
                         url: "#",
                     },
-                    {
-                        title: "Quantum",
-                        url: "#",
-                    },
+
                 ],
             },
             {

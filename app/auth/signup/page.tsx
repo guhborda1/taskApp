@@ -1,7 +1,7 @@
 'use server'
 import { redirect } from "next/navigation";
-import AuthForm from "./_components/auth-form"
 import { auth } from "@/services/auth";
+import { SignUpForm } from "../_components/signUpForm";
 
 
 const Page = async () => {
@@ -9,7 +9,7 @@ const Page = async () => {
     if (!session) {
         return (
             <div className="flex justify-center min-h-[500px]">
-                <AuthForm />
+                <SignUpForm />
             </div>
         )
     } else {

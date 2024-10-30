@@ -11,7 +11,7 @@ type Inputs = {
     email: string
     password: string
 }
-export function AuthForm() {
+export function SignUpForm() {
     const {
         register,
         handleSubmit,
@@ -61,18 +61,19 @@ export function AuthForm() {
                                         <Button type="submit" className="w-full">
                                             Login
                                         </Button>
-                                        <Button variant="outline" className="w-full" onClick={() => signIn('google')
-                                        }>
-                                            Login with Google
-                                        </Button>
+
                                     </div>
                                 </div>
                             </form>
+                            <Button variant="outline" className="w-full" onClick={() => signIn('google')
+                            }>
+                                Login with Google
+                            </Button>
                         </div>
 
                         <div className="mt-4 text-center text-sm">
                             Don&apos;t have an account?{" "}
-                            <Link href="#" className="underline">
+                            <Link href="/auth/signup" className="underline">
                                 Sign up
                             </Link>
                         </div>
@@ -83,8 +84,6 @@ export function AuthForm() {
         </>
 
     )
-    return
-    ('/dashboard')
 }
 
 function ChromeIcon(props: any) {
@@ -109,4 +108,3 @@ function ChromeIcon(props: any) {
         </svg>
     )
 }
-export default AuthForm
