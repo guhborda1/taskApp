@@ -80,6 +80,7 @@ import { Dialog, DialogContent, DialogDescription, DialogTitle } from '@/compone
 
 export default function DashboardLayout({ children, session }: { children: React.ReactNode, session: any }) {
 
+
     const data = {
         user: {
             name: session?.user.name,
@@ -192,7 +193,9 @@ export default function DashboardLayout({ children, session }: { children: React
         <SidebarProvider>
             <Sidebar variant="inset">
                 <SidebarHeader>
+
                     <SidebarMenu>
+                        
                         <SidebarMenuItem>
                             <SidebarMenuButton size="lg" asChild>
                                 <a href="#">
@@ -336,7 +339,6 @@ export default function DashboardLayout({ children, session }: { children: React
                 </div>
             </SidebarInset>
         </SidebarProvider>
-
 
     )
 }
