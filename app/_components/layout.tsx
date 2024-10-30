@@ -75,9 +75,10 @@ import {
 
 import { DashboardSideBarInsetHeader } from './dashboardSideBarInsetHeader/dashboardSideBarInsetHeader'
 import { DasboardSidebarFooter } from './dasboardSidebarFooter/dasboardSidebarFooter'
+import { Dialog, DialogContent, DialogDescription, DialogTitle } from '@/components/ui/dialog'
 
 
-export default function DashboardLayout({ children, session }: any) {
+export default function DashboardLayout({ children, session }: { children: React.ReactNode, session: any }) {
 
     const data = {
         user: {
