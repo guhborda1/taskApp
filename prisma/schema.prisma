@@ -11,7 +11,6 @@ generator client {
 datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
-  
 }
 
 model Account {
@@ -68,8 +67,30 @@ model Authenticator {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
+// enum RoleType {
+//   user
+//   admin
+// }
+// enum PropostaStatus {
+//   ABERTO
+//   FECHADO
+// RECUSADO
+// }
+model Company {
+  id         String     @id @unique @default(cuid())
+  name       String
+  cnpj       String     @unique
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+  adminUsers User[]     @relation("AdminCompanies")
+  sellers    User[]     @relation("SellerCompanies")
+  clients    Client[]
+  proposals  Proposal[]
+  contacts   Contact[] // Corrigido para "contacts"
+}
+
 model User {
-  id                       String          @id @default(cuid())
+  id                       String          @id @unique @default(cuid())
   name                     String?
   email                    String          @unique
   emailVerified            DateTime?
@@ -84,49 +105,84 @@ model User {
   password                 String?
   createdAt                DateTime        @default(now())
   updatedAt                DateTime        @updatedAt
-  role                     String          @default("user")
-  Proposta                 Proposta[]
+  role                     Role            @default(user)
+  tasks                    Task[]
+  proposals                Proposal[]
+  companies                Company[]       @relation("AdminCompanies") // AdminEmpresa pode ter várias empresas
+  sellerInCompanyId        String? // Mudado para String
+  sellerInCompany          Company?        @relation("SellerCompanies", fields: [sellerInCompanyId], references: [id]) // Um vendedor associado a uma empresa
+  clients                  Client[] // Vendedor pode ter vários clientes
 }
 
-model Contato {
-  id          String     @id @unique @default(cuid())
-  nome        String?
-  tipo        String?
-  documento   String?
-  telefone    String?
-  whatsapp    String?
-  email       String?
-  detalhes    String?
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
-  createdBy   String?
-  logradouro  String?
-  numero      String?
-  complemento String?
-  bairro      String?
-  cep         String?
-  estado      String?
-  cidade      String?
-  Proposta    Proposta[]
+enum Role {
+  admin
+  user
+  adminEmpresa
+  vendedor
 }
 
-model Proposta {
-  id        String   @id @unique @default("P${cuid()}")
+model Client {
+  id        String     @id @default(cuid())
+  name      String
+  email     String
+  phone     String
+  companyId String // Mudado para String
+  company   Company    @relation(fields: [companyId], references: [id])
+  userId    String // Mudado para String
+  user      User       @relation(fields: [userId], references: [id])
+  contactId String // Mudado para String
+  contact   Contact    @relation(fields: [contactId], references: [id])
+  proposals Proposal[]
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}
+
+model Proposal {
+  id           Int          @id @default(autoincrement())
+  description  String
+  cost         Float // Custo do kit/inversor
+  percentage   Float // Porcentagem de lucro
+  total        Float // Valor final
+  kanbanStatus KanbanStatus @default(BACKLOG) // Status no Kanban
+  companyId    String // Mudado para String
+  company      Company      @relation(fields: [companyId], references: [id])
+  userId       String // Mudado para String
+  user         User         @relation(fields: [userId], references: [id]) // Vendedor responsável
+  clientId     String // Mudado para String
+  client       Client       @relation(fields: [clientId], references: [id])
+  tasks        Task[]
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+}
+
+enum KanbanStatus {
+  BACKLOG // Proposta nova, aguardando
+  EM_PROGRESSO // Proposta em andamento
+  CONCLUIDA // Proposta finalizada
+  CANCELADA // Proposta cancelada
+}
+
+model Task {
+  id           Int          @id @default(autoincrement())
+  description  String
+  kanbanStatus KanbanStatus @default(BACKLOG) // Status no Kanban
+  deadline     DateTime?
+  proposalId   Int
+  proposal     Proposal     @relation(fields: [proposalId], references: [id])
+  userId       String // Mudado para String
+  user         User         @relation(fields: [userId], references: [id])
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+}
+
+model Contact {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String
+  phone     String
+  companyId String // Mudado para String
+  company   Company  @relation(fields: [companyId], references: [id])
+  clients   Client[] // Um contato pode estar relacionado a vários clientes
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  contatoId String
-  contato   Contato  @relation(fields: [contatoId], references: [id])
-  userId    String
-  user      User     @relation(fields: [userId], references: [id])
-  status    String   @default("aberto")
 }
-
-// enum RoleType {
-//   user
-//   admin
-// }
-// enum PropostaStatus {
-//   ABERTO
-//   FECHADO
-// RECUSADO
-// }
