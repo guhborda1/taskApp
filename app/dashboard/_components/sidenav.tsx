@@ -13,7 +13,7 @@ import { Award, BriefcaseBusinessIcon, ChevronDown, ChevronUp, CreditCard, DogIc
 import Image from 'next/image'
 
 import { useState } from 'react'
-import { Progress } from '@/components/ui/progress'
+
 import Link from 'next/link'
 
 import { cn } from '@/lib/utils'
