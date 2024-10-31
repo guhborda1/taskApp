@@ -64,10 +64,11 @@ import {
 
 import { DashboardSideBarInsetHeader } from './dashboardSideBarInsetHeader/dashboardSideBarInsetHeader'
 import { DasboardSidebarFooter } from './dasboardSidebarFooter/dasboardSidebarFooter'
+import { Session } from "@/types/next-auth"
 
 
 
-export default function DashboardLayout({ children, session }: { children: React.ReactNode, session: any }) {
+export default function DashboardLayout({ children, session }: { children: React.ReactNode, session: Session }) {
 
 
     const data = {
