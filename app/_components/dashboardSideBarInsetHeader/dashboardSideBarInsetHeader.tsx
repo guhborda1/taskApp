@@ -1,5 +1,5 @@
 'use client'
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '@/components/ui/breadcrumb'
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList } from '@/components/ui/breadcrumb'
 import { Separator } from '@/components/ui/separator'
 import { SidebarTrigger } from '@/components/ui/sidebar'
 import React from 'react'
@@ -12,7 +12,7 @@ type TBreadCrumbProps = {
     activeClasses?: string,
     capitalizeLinks?: boolean
 }
-export const DashboardSideBarInsetHeader = ({ homeElement, separator, containerClasses, listClasses, activeClasses, capitalizeLinks }: TBreadCrumbProps) => {
+export const DashboardSideBarInsetHeader = ({ separator, listClasses, activeClasses, capitalizeLinks }: TBreadCrumbProps) => {
     const paths = usePathname()
     const pathNames = paths.split('/').filter(path => path)
 
@@ -23,6 +23,7 @@ export const DashboardSideBarInsetHeader = ({ homeElement, separator, containerC
                 <Separator orientation="vertical" className="mr-2 h-4" />
                 <Breadcrumb>
                     <BreadcrumbList>
+
                         {pathNames.length > 0 && separator}
                         {
                             pathNames.map((link, index) => {
