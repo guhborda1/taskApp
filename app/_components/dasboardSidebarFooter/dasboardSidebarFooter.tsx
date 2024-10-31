@@ -7,7 +7,7 @@ import { BadgeCheck, Bell, ChevronsUpDown, CreditCard, LogOut, Sparkles } from '
 import { signOut } from 'next-auth/react'
 import React from 'react'
 
-export const DasboardSidebarFooter = ({data}: any) => {
+export const DasboardSidebarFooter = (data: any) => {
     return (
         <SidebarFooter>
             <SidebarMenu>

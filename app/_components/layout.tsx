@@ -1,5 +1,4 @@
 "use client"
-import Link from 'next/link'
 import {
 
     BookOpen,
@@ -42,7 +41,7 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Separator } from "@/components/ui/separator"
+
 import {
     Sidebar,
     SidebarContent,
