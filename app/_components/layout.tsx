@@ -195,7 +195,7 @@ export default function DashboardLayout({ children, session }: { children: React
                 <SidebarHeader>
 
                     <SidebarMenu>
-                        
+
                         <SidebarMenuItem>
                             <SidebarMenuButton size="lg" asChild>
                                 <a href="#">
