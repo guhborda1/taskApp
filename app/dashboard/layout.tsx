@@ -2,8 +2,6 @@
 import type { Metadata } from "next";
 import { auth } from "@/services/auth";
 import { redirect } from "next/navigation";
-import { MainSidebar } from "./_components/sidenav";
-import { DollarSignIcon, HomeIcon } from "lucide-react";
 import DashboardLayout from "../_components/layout";
 
 
