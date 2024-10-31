@@ -9,7 +9,7 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -138,7 +138,7 @@ model Client {
 }
 
 model Proposal {
-  id           Int          @id @default(autoincrement())
+  id           String       @id @default(cuid())
   description  String
   cost         Float // Custo do kit/inversor
   percentage   Float // Porcentagem de lucro
@@ -163,11 +163,11 @@ enum KanbanStatus {
 }
 
 model Task {
-  id           Int          @id @default(autoincrement())
+  id           String       @id @default(cuid())
   description  String
   kanbanStatus KanbanStatus @default(BACKLOG) // Status no Kanban
   deadline     DateTime?
-  proposalId   Int
+  proposalId   String
   proposal     Proposal     @relation(fields: [proposalId], references: [id])
   userId       String // Mudado para String
   user         User         @relation(fields: [userId], references: [id])
@@ -176,7 +176,7 @@ model Task {
 }
 
 model Contact {
-  id        Int      @id @default(autoincrement())
+  id        String   @id @default(cuid())
   name      String
   email     String
   phone     String
