@@ -191,14 +191,14 @@ export const getUserCurrentPlan = async (userId: string) => {
 
   const plan = getPlanByPrice(user.stripePriceId)
 
-  const tasksCount = await db.pet.count({
-    where: {
-      userId,
-    },
-  })
+  // const tasksCount = await db.pet.count({
+  //   where: {
+  //     userId,
+  //   },
+  // })
 
   const availablePets = plan.quota.PETS
-  const currentTasks = tasksCount
+  const currentTasks = 15
   const usage = (currentTasks / availablePets) * 100
 
   return {
