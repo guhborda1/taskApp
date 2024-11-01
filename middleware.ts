@@ -1,4 +1,3 @@
-export { auth as middleware } from "@/services/auth"
 import { NextRequest, NextResponse } from 'next/server'
 import { getUrl } from './lib/getUrl'
 export default function middleware(req: NextRequest) {
@@ -8,8 +7,8 @@ export default function middleware(req: NextRequest) {
         token: token?.value,
         pathname,
     })
-    if (pathname === '/auth/signin' && token) {
-        return NextResponse.redirect(new URL(getUrl('/')))
+    if (pathname === '/auth/sigin' && token) {
+        return NextResponse.redirect(new URL(getUrl('/dashboard')))
     }
 }
 export const config = {
