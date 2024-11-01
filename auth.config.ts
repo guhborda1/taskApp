@@ -83,7 +83,6 @@ export default {
         sessionToken: {
             name: "authjs.session-token",
             options: {
-                domain: process.env.NEXT_PUBLIC_URL,
                 path: "/",
                 httpOnly: true,
                 sameSite: "lax",
