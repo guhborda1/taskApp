@@ -1,25 +1,22 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
+// src/app/api/handler/route.ts
+
+import { NextResponse } from 'next/server';
 
 type ResponseData = {
-    message: unknown
+    message: unknown;
+};
+
+export async function POST(request: Request) {
+    try {
+        const { email, password } = await request.json(); // Lendo os dados do corpo da requisição
+        console.log({ email, password });
+
+        return NextResponse.json({ message: 'Hello from Next.js!' }, { status: 200 });
+    } catch (err) {
+        return NextResponse.json({ message: err }, { status: 400 });
+    }
 }
 
-export default async function handler(
-    req: NextApiRequest,
-    res: NextApiResponse<ResponseData>
-) {
-
-    if (req.method === 'POST') {
-        // Process a POST request
-        try {
-            const { email, password } = await req.body
-            console.log({ email, password })
-        } catch (err) {
-            return res.status(400).json({ message: err })
-        }
-    } else {
-        res.status(400).json({ message: 'Método invalido!' })
-
-    }
-    res.status(200).json({ message: 'Hello from Next.js!' })
+export async function GET() {
+    return NextResponse.json({ message: 'Método inválido!' }, { status: 400 });
 }
