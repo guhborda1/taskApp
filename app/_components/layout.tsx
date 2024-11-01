@@ -94,7 +94,7 @@ export default function DashboardLayout({ children, session }: { children: React
             },
             {
                 title: "Contatos",
-                url: "#",
+                url: "/dashboard/contatos",
                 icon: Bot,
                 items: [
                     {
@@ -103,7 +103,7 @@ export default function DashboardLayout({ children, session }: { children: React
                     },
                     {
                         title: "Contatos ",
-                        url: "#",
+                        url: "/dashboard/contatos",
                     },
 
                 ],
@@ -212,45 +212,55 @@ export default function DashboardLayout({ children, session }: { children: React
                     <SidebarGroup>
                         <SidebarGroupLabel>Platform</SidebarGroupLabel>
                         <SidebarMenu>
-                            {data.navMain.map((item) => (
-                                <Collapsible
-                                    key={item.title}
-                                    asChild
-                                    defaultOpen={item.isActive}
-                                >
-                                    <SidebarMenuItem>
-                                        <SidebarMenuButton asChild tooltip={item.title}>
-                                            <a href={item.url}>
-                                                <item.icon />
-                                                <span>{item.title}</span>
-                                            </a>
-                                        </SidebarMenuButton>
-                                        {item.items?.length ? (
-                                            <>
-                                                <CollapsibleTrigger asChild>
-                                                    <SidebarMenuAction className="data-[state=open]:rotate-90">
-                                                        <ChevronRight />
-                                                        <span className="sr-only">Toggle</span>
-                                                    </SidebarMenuAction>
-                                                </CollapsibleTrigger>
-                                                <CollapsibleContent>
-                                                    <SidebarMenuSub>
-                                                        {item.items?.map((subItem) => (
-                                                            <SidebarMenuSubItem key={subItem.title}>
-                                                                <SidebarMenuSubButton asChild>
-                                                                    <a href={subItem.url}>
-                                                                        <span>{subItem.title}</span>
-                                                                    </a>
-                                                                </SidebarMenuSubButton>
-                                                            </SidebarMenuSubItem>
-                                                        ))}
-                                                    </SidebarMenuSub>
-                                                </CollapsibleContent>
-                                            </>
-                                        ) : null}
-                                    </SidebarMenuItem>
-                                </Collapsible>
-                            ))}
+                            {data.navMain.map((link, index) => {
+                                const href = `/${pathNames.slice(0, index + 1).join('/')}`
+                                const itemClasses = paths === href ? 'bg-primary-foreground' : ''
+                                const itemLink = true ? link.title.toUpperCase() + link.url.slice(1, link.url.length) : link.title
+                                return (
+                                    <Collapsible
+                                        key={link.title}
+                                        asChild
+                                        defaultOpen={link.isActive}
+                                    >
+                                        <SidebarMenuItem>
+                                            <SidebarMenuButton className={`${itemClasses}`} asChild tooltip={link.title}>
+                                                <a href={link.url}>
+                                                    <link.icon />
+                                                    <span>{link.title}</span>
+                                                </a>
+                                            </SidebarMenuButton>
+                                            {link.items?.length ? (
+                                                <>
+                                                    <CollapsibleTrigger asChild>
+                                                        <SidebarMenuAction className="data-[state=open]:rotate-90">
+                                                            <ChevronRight />
+                                                            <span className="sr-only">Toggle</span>
+                                                        </SidebarMenuAction>
+                                                    </CollapsibleTrigger>
+                                                    <CollapsibleContent>
+                                                        <SidebarMenuSub>
+                                                            {link.items?.map((subItem, index) => {
+                                                                const href = `/${pathNames.slice(0, index + 1).join('/')}`
+                                                                const itemClasses = paths === href ? 'bg-primary-foreground' : ''
+                                                                const itemLink = true ? subItem.title.toUpperCase() + subItem.url.slice(1, subItem.url.length) : subItem.title
+                                                                return (
+                                                                    <SidebarMenuSubItem key={subItem.title}>
+                                                                        <SidebarMenuSubButton asChild>
+                                                                            <a href={subItem.url}>
+                                                                                <span>{subItem.title}</span>
+                                                                            </a>
+                                                                        </SidebarMenuSubButton>
+                                                                    </SidebarMenuSubItem>
+                                                                )
+                                                            })}
+                                                        </SidebarMenuSub>
+                                                    </CollapsibleContent>
+                                                </>
+                                            ) : null}
+                                        </SidebarMenuItem>
+                                    </Collapsible>
+                                )
+                            })}
                         </SidebarMenu>
                     </SidebarGroup>
                     <SidebarGroup className="group-data-[collapsible=icon]:hidden">
@@ -306,8 +316,8 @@ export default function DashboardLayout({ children, session }: { children: React
                             <SidebarMenu>
                                 {data.navSecondary.map((link, index) => {
                                     const href = `/${pathNames.slice(0, index + 1).join('/')}`
-                                    const itemClasses = paths === href && `bg-secondary-foreground`
-                                    const itemLink = true ? link.title[0].toUpperCase() + link.url.slice(1, link.url.length) : link.title
+                                    const itemClasses = paths === href ? 'bg-primary-foreground' : ''
+                                    const itemLink = true ? link.title.toUpperCase() + link.url.slice(1, link.url.length) : link.title
                                     return (
                                         <SidebarMenuItem key={index}>
                                             <SidebarMenuButton className={`${itemClasses}`} asChild size="sm">
@@ -332,7 +342,7 @@ export default function DashboardLayout({ children, session }: { children: React
                     }
                     activeClasses='font-bold'
                     containerClasses=''
-                    listClasses='text-black mx-2 font-bold'
+                    listClasses='text-black mx-2'
                     capitalizeLinks />
                 <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
                     < main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8" >
