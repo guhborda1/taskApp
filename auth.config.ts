@@ -1,6 +1,7 @@
 
 import Credentials from "next-auth/providers/credentials"
 import Google from "next-auth/providers/google"
+import { createStripeCustomer } from "./services/stripe"
 
 
 import { db } from "./lib/prisma"
@@ -79,7 +80,35 @@ export default {
 
         })
     ],
-    events: {},
+    events: {
+
+        async createUser(message: any) {
+            // Only proceed if the user is newly created (i.e., sign-up)
+            if (message.user) {
+                try {
+                    await createStripeCustomer({
+                        name: message.user.name as string,
+                        email: message.user.email as string,
+                    });
+                } catch (error) {
+                    console.error("Error creating Stripe customer:", error);
+                }
+            }
+        },
+        async signIn(message: any) {
+            // Only proceed if the user is newly created (i.e., sign-up)
+            if (message.user) {
+                try {
+                    await createStripeCustomer({
+                        name: message.user.name as string,
+                        email: message.user.email as string,
+                    });
+                } catch (error) {
+                    console.error("Error creating Stripe customer:", error);
+                }
+            }
+        },
+    },
     callbacks: {
         async session({ session, user }: any) {
             session.user = { ...session.user, id: user.id, }
