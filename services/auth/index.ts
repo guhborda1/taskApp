@@ -11,7 +11,7 @@ export const {
     signOut,
 } = NextAuth({
     pages: {
-        signIn: '/dashboard', signOut: '/auth/signin', error: '/',
+        signIn: '/auth/signin', signIn: '/auth/signup', signOut: '/auth/signin', error: '/',
         newUser: '/dashboard'
     },
     adapter: PrismaAdapter(db) as Adapter,
