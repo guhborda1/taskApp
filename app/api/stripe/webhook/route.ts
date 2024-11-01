@@ -8,10 +8,12 @@ import { headers } from 'next/headers'
 
 export async function POST(req: Request) {
   const body = await req.text()
-  const signature = headers().get('Stripe-Signature') as string
+
+  // Aguarde a promise ser resolvida antes de acessar o método 'get'
+  const headersList = await headers()
+  const signature = headersList.get('Stripe-Signature') as string
 
   let event: Stripe.Event
-
   try {
     event = stripe.webhooks.constructEvent(
       body,
