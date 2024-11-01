@@ -6,7 +6,7 @@ import { SignUpForm } from "../_components/signUpForm";
 
 const Page = async () => {
     const session = await auth();
-    if (!session) {
+    if (!session?.user) {
         return (
             <div className="flex justify-center min-h-[500px]">
                 <SignUpForm />
