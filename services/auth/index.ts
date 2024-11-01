@@ -11,11 +11,11 @@ export const {
     signOut,
 } = NextAuth({
     pages: {
-        signIn: '/auth/signin', signOut: '/auth/signin', error: '/',
+        signIn: '/auth/signin', signOut: '/auth/signin', error: '/auth/signin',
         verifyRequest: '/auth/signin',
         newUser: '/dashboard'
     },
-    adapter: PrismaAdapter(db) as Adapter,
+    adapter: PrismaAdapter(db),
     // providers: [Google, EmailProvider()],
     secret: process.env.SECRET,
     ...authConfig,
