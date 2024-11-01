@@ -123,9 +123,9 @@ enum Role {
 
 model Client {
   id        String     @id @default(cuid())
-  name      String
-  email     String
-  phone     String
+  name      String?
+  email     String?
+  phone     String?
   companyId String // Mudado para String
   company   Company    @relation(fields: [companyId], references: [id])
   userId    String // Mudado para String
