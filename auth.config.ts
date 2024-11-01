@@ -48,8 +48,8 @@ const getUserFromDb = async ({ email, password }: userLogin) => {
 export default {
     providers: [
         Google({
-            clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENTID,
-            clientSecret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET,
+            clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENTID as String,
+            clientSecret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET as String,
         }),
         Credentials({
             credentials: {
