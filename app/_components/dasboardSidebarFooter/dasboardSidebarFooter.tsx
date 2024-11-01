@@ -7,7 +7,7 @@ import { BadgeCheck, Bell, ChevronsUpDown, CreditCard, LogOut, Sparkles } from '
 import { signOut } from 'next-auth/react'
 import React from 'react'
 
-export const DasboardSidebarFooter = (data: any) => {
+export const DasboardSidebarFooter = (data: userDataInterface) => {
     return (
         <SidebarFooter>
             <SidebarMenu>
@@ -20,17 +20,17 @@ export const DasboardSidebarFooter = (data: any) => {
                             >
                                 <Avatar className="h-8 w-8 rounded-lg">
                                     <AvatarImage
-                                        src={data.user.avatar}
-                                        alt={data.user.name}
+                                        src={data.avatar}
+                                        alt={data.name}
                                     />
                                     <AvatarFallback className="rounded-lg">MRT</AvatarFallback>
                                 </Avatar>
                                 <div className="grid flex-1 text-left text-sm leading-tight">
                                     <span className="truncate font-semibold">
-                                        {data.user.name}
+                                        {data.name}
                                     </span>
                                     <span className="truncate text-xs">
-                                        {data.user.email}
+                                        {data.email}
                                     </span>
                                 </div>
                                 <ChevronsUpDown className="ml-auto size-4" />
@@ -46,8 +46,8 @@ export const DasboardSidebarFooter = (data: any) => {
                                 <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                                     <Avatar className="h-8 w-8 rounded-lg">
                                         <AvatarImage
-                                            src={data.user.avatar}
-                                            alt={data.user.name}
+                                            src={data.avatar}
+                                            alt={data.name}
                                         />
                                         <AvatarFallback className="rounded-lg">
                                             CN
@@ -55,10 +55,10 @@ export const DasboardSidebarFooter = (data: any) => {
                                     </Avatar>
                                     <div className="grid flex-1 text-left text-sm leading-tight">
                                         <span className="truncate font-semibold">
-                                            {data.user.name}
+                                            {data.name}
                                         </span>
                                         <span className="truncate text-xs">
-                                            {data.user.email}
+                                            {data.email}
                                         </span>
                                     </div>
                                 </div>

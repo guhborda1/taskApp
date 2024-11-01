@@ -65,9 +65,14 @@ import {
 import { DashboardSideBarInsetHeader } from './dashboardSideBarInsetHeader/dashboardSideBarInsetHeader'
 import { DasboardSidebarFooter } from './dasboardSidebarFooter/dasboardSidebarFooter'
 import { Session } from "@/types/next-auth"
+import React from "react"
 
 
+export interface userDataInterface {
+    user: { nome: string, email: string, avatar: string },
 
+
+}
 export default function DashboardLayout({ children, session }: { children: React.ReactNode, session: Session }) {
 
 
@@ -311,7 +316,7 @@ export default function DashboardLayout({ children, session }: { children: React
                         </SidebarGroupContent>
                     </SidebarGroup>
                 </SidebarContent>
-                <DasboardSidebarFooter data={data} />
+                <DasboardSidebarFooter data={data.user} />
             </Sidebar>
             <SidebarInset>
                 <DashboardSideBarInsetHeader homeElement={<HomeIcon size={12} />}
