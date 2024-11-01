@@ -69,7 +69,7 @@ import React from "react"
 
 
 export interface userDataInterface {
-    user: { nome: string, email: string, avatar: string },
+    user: { name: string, email: string, avatar: string },
 
 
 }
