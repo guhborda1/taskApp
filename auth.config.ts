@@ -121,8 +121,9 @@ export default {
         },
     },
     callbacks: {
-        async session({ session, user }: any) {
+        async session({ session, user, token }: any) {
             session.user = { ...session.user, id: user.id, }
+            session.accessToken = token.accessToken
             return session;
         },
         async jwt({ token, user }) {
