@@ -66,6 +66,7 @@ import { DashboardSideBarInsetHeader } from './dashboardSideBarInsetHeader/dashb
 import { DasboardSidebarFooter } from './dasboardSidebarFooter/dasboardSidebarFooter'
 import { Session } from "@/types/next-auth"
 import React from "react"
+import { usePathname } from "next/navigation"
 
 
 export interface userDataInterface {
@@ -75,7 +76,8 @@ export interface userDataInterface {
 }
 export default function DashboardLayout({ children, session }: { children: React.ReactNode, session: Session }) {
 
-
+    const paths = usePathname()
+    const pathNames = paths.split('/').filter(path => path)
     const data = {
         user: {
             name: session?.user.name,
@@ -302,16 +304,21 @@ export default function DashboardLayout({ children, session }: { children: React
                     <SidebarGroup className="mt-auto">
                         <SidebarGroupContent>
                             <SidebarMenu>
-                                {data.navSecondary.map((item) => (
-                                    <SidebarMenuItem key={item.title}>
-                                        <SidebarMenuButton asChild size="sm">
-                                            <a href={item.url}>
-                                                <item.icon />
-                                                <span>{item.title}</span>
-                                            </a>
-                                        </SidebarMenuButton>
-                                    </SidebarMenuItem>
-                                ))}
+                                {data.navSecondary.map((link, index) => {
+                                    const href = `/${pathNames.slice(0, index + 1).join('/')}`
+                                    const itemClasses = paths === href && `bg-secondary-foreground`
+                                    const itemLink = true ? link.title[0].toUpperCase() + link.url.slice(1, link.url.length) : link.title
+                                    return (
+                                        <SidebarMenuItem key={index}>
+                                            <SidebarMenuButton className={`${itemClasses}`} asChild size="sm">
+                                                <a href={link.url}>
+                                                    <link.icon />
+                                                    <span>{itemLink}</span>
+                                                </a>
+                                            </SidebarMenuButton>
+                                        </SidebarMenuItem>
+                                    )
+                                })}
                             </SidebarMenu>
                         </SidebarGroupContent>
                     </SidebarGroup>
@@ -323,7 +330,7 @@ export default function DashboardLayout({ children, session }: { children: React
                     separator={
                         <BreadcrumbSeparator className="hidden md:block" />
                     }
-                    activeClasses=' font-bol'
+                    activeClasses='font-bold'
                     containerClasses=''
                     listClasses='text-black mx-2 font-bold'
                     capitalizeLinks />
