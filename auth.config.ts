@@ -79,6 +79,18 @@ export default {
 
         })
     ],
+    cookies: {
+        sessionToken: {
+            name: "authjs.session-token",
+            options: {
+                domain: process.env.NEXT_PUBLIC_URL,
+                path: "/",
+                httpOnly: true,
+                sameSite: "lax",
+                secure: true
+            }
+        }
+    },
     events: {
 
         async createUser(message: any) {
@@ -113,11 +125,11 @@ export default {
             session.user = { ...session.user, id: user.id, }
             return session;
         },
-        // async jwt({ token, user }) {
-        //     // Adicionar businessId no token se o usuário tiver um negócio associado
+        async jwt({ token, user }) {
+            // Adicionar businessId no token se o usuário tiver um negócio associado
 
-
-        //     return token
-        // },
+            token = { ...token }
+            return token
+        },
     }
 } satisfies NextAuthConfig
