@@ -6,6 +6,7 @@ import { SidebarFooter, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '
 import { BadgeCheck, Bell, ChevronsUpDown, CreditCard, LogOut, Sparkles } from 'lucide-react'
 import { signOut } from 'next-auth/react'
 import React from 'react'
+import { userDataInterface } from '../layout'
 
 export const DasboardSidebarFooter = (data: userDataInterface) => {
     return (
