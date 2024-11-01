@@ -14,7 +14,6 @@ const Page = async () => {
             </div>
         )
     } else {
-
         return redirect('/dashboard')
 
     }
