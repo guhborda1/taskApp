@@ -15,7 +15,7 @@ export const {
         verifyRequest: '/auth/signin',
         newUser: '/dashboard'
     },
-    adapter: PrismaAdapter(db) as Adapter,
+    adapter: PrismaAdapter(db),
     // providers: [Google, EmailProvider()],
     secret: process.env.SECRET,
     ...authConfig,
