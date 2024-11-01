@@ -86,7 +86,7 @@ export default {
                 path: "/",
                 httpOnly: true,
                 sameSite: "lax",
-                secure: true
+                secure: false
             }
         }
     },
