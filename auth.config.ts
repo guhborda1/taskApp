@@ -120,15 +120,15 @@ export default {
         },
     },
     callbacks: {
-        async session({ session, user, token }: any) {
+        async session({ session, user }: any) {
             session.user = { ...session.user, id: user.id, }
-            session.accessToken = token.accessToken
+            
             return session;
         },
         async jwt({ token, user }) {
             // Adicionar businessId no token se o usuário tiver um negócio associado
 
-            token = { ...token }
+            token. = { ...token }
             return token
         },
     }
