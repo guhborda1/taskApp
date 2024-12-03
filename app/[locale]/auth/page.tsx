@@ -1,7 +1,8 @@
 'use server'
 import { redirect } from "next/navigation";
-import { SignInForm } from "../_components/signInForm"
+
 import { auth } from "@/services/auth";
+import { SignInForm } from "./_components/signInForm";
 
 
 

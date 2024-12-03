@@ -1,4 +1,4 @@
-"use client"
+"user server"
 import {
 
     BookOpen,
@@ -66,7 +66,8 @@ import { DashboardSideBarInsetHeader } from './dashboardSideBarInsetHeader/dashb
 import { DasboardSidebarFooter } from './dasboardSidebarFooter/dasboardSidebarFooter'
 import { Session } from "@/types/next-auth"
 import React from "react"
-import { usePathname } from "next/navigation"
+import { redirect, usePathname } from "next/navigation"
+import { auth } from "@/services/auth"
 
 
 export interface userDataInterface {
@@ -74,10 +75,12 @@ export interface userDataInterface {
 
 
 }
-export default function DashboardLayout({ children, session }: { children: React.ReactNode, session: Session }) {
-
+export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
+    const session = await auth()
     const paths = usePathname()
     const pathNames = paths.split('/').filter(path => path)
+    if (!session?.user)
+        return redirect('/auth')
     const data = {
         user: {
             name: session?.user.name,

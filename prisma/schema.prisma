@@ -1,16 +1,195 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
+// Generator para Prisma Client
 generator client {
   provider = "prisma-client-js"
 }
 
+// Fonte de dados PostgreSQL
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+// Modelos de banco de dados
+enum UserPermission {
+  ADMIN
+  CAN_EDIT
+  READ_ONLY
+  OWNER
+}
+
+enum UseCase {
+  WORK
+  STUDY
+  PERSONAL_USE
+}
+
+enum NotifyType {
+  NEW_USER_IN_WORKSPACE
+  USER_LEFT_WORKSPACE
+  NEW_TASK
+  NEW_MIND_MAP
+  NEW_ROLE
+  NEW_ASSIGNMENT_TASK
+  NEW_ASSIGNMENT_MIND_MAP
+}
+
+model Role {
+  id              String            @id @default(cuid())
+  name            String            @unique
+  description     String? // Descrição opcional do papel
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  permissions     Permission[]      @relation("RolePermissions") // Relacionamento com permissões
+  users           User[] // Relacionamento com usuários
+  RolePermissions RolePermissions[]
+}
+
+model Permission {
+  id              String            @id @default(cuid())
+  name            String            @unique
+  description     String? // Descrição opcional da permissão
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  roles           Role[]            @relation("RolePermissions") // Relacionamento com roles
+  RolePermissions RolePermissions[]
+}
+
+model RolePermissions {
+  roleId       String
+  permissionId String
+  createdAt    DateTime @default(now())
+
+  role       Role       @relation(fields: [roleId], references: [id])
+  permission Permission @relation(fields: [permissionId], references: [id])
+
+  @@id([roleId, permissionId]) // Chave primária composta
+}
+
+model Organization {
+  id        String   @id
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  users                OrganizationUser[]
+  teams                Team[]
+  FinancialTransaction FinancialTransaction[]
+}
+
+model OrganizationUser {
+  id             String           @id
+  organizationId String
+  userId         String
+  role           OrganizationRole @default(member)
+  joinedAt       DateTime         @default(now())
+
+  organization Organization @relation(fields: [organizationId], references: [id])
+  user         User         @relation(fields: [userId], references: [id])
+}
+
+enum OrganizationRole {
+  admin
+  member
+}
+
+model Team {
+  id             String   @id
+  organizationId String
+  name           String
+  createdAt      DateTime @default(now())
+
+  organization Organization @relation(fields: [organizationId], references: [id])
+  members      TeamMember[]
+  Contact      Contact[]
+
+  companyId String?
+}
+
+model TeamMember {
+  id       String         @id
+  teamId   String
+  userId   String
+  role     TeamMemberRole @default(member)
+  joinedAt DateTime       @default(now())
+
+  team Team @relation(fields: [teamId], references: [id])
+  user User @relation(fields: [userId], references: [id])
+}
+
+enum TeamMemberRole {
+  admin
+  member
+}
+
+model Task {
+  id          String     @id @default(cuid())
+  title       String
+  description String?
+  status      TaskStatus @default(pending)
+  dueDate     DateTime?
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  projectId   String
+  project     Project    @relation(fields: [projectId], references: [id])
+  assignees   User[]     @relation("TaskAssignee")
+}
+
+enum TaskStatus {
+  pending
+  in_progress
+  completed
+  canceled
+}
+
+model User {
+  id                       String             @id @default(cuid())
+  name                     String
+  email                    String             @unique
+  emailVerified            DateTime?
+  image                    String?
+  stripeCustomerId         String?
+  stripeSubscriptionId     String?
+  stripeSubscriptionStatus String?
+  stripePriceId            String?
+  password                 String
+  createdAt                DateTime           @default(now())
+  updatedAt                DateTime           @updatedAt
+  roleId                   String             @default("1")
+  selectedBusiness         String?
+  selectedTeam             String?
+  role                     Role               @relation(fields: [roleId], references: [id])
+  accounts                 Account[]
+  sessions                 Session[]
+  authenticators           Authenticator[]
+  boardsCreated            Board[]            @relation("BoardCreatedBy")
+  boards                   BoardMember[]
+  teamMemberships          TeamMember[]
+  tasksAssigned            Task[]             @relation("TaskAssignee")
+  organizationUsers        OrganizationUser[]
+  Comment                  Comment[]
+  ActivityLog              ActivityLog[]
+  Contact                  Contact[]
+}
+
+model FinancialTransaction {
+  id              String          @id @default(cuid())
+  clientId        String
+  client          Client          @relation(fields: [clientId], references: [id])
+  organizationId  String
+  organization    Organization    @relation(fields: [organizationId], references: [id])
+  amount          Float
+  transactionType TransactionType
+  description     String?
+  createdBy       String
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+  Project         Project?        @relation(fields: [projectId], references: [id])
+  projectId       String?
+}
+
+enum TransactionType {
+  income
+  expense
 }
 
 model Account {
@@ -25,11 +204,10 @@ model Account {
   scope             String?
   id_token          String?
   session_state     String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id])
 
   @@id([provider, providerAccountId])
 }
@@ -38,10 +216,10 @@ model Session {
   sessionToken String   @unique
   userId       String
   expires      DateTime
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  user User @relation(fields: [userId], references: [id])
 }
 
 model VerificationToken {
@@ -52,137 +230,170 @@ model VerificationToken {
   @@id([identifier, token])
 }
 
-// Optional for WebAuthn support
 model Authenticator {
-  id                   String  @id @default(cuid())
-  credentialID         String  @unique
+  id                   String   @id @default(cuid())
+  credentialID         String   @unique
   userId               String
   providerAccountId    String
   credentialPublicKey  String
   counter              Int
   credentialDeviceType String
   credentialBackedUp   Boolean
-  transports           String?
+  transports           String
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id])
 }
 
-// enum RoleType {
-//   user
-//   admin
-// }
-// enum PropostaStatus {
-//   ABERTO
-//   FECHADO
-// RECUSADO
-// }
-model Company {
-  id         String     @id @unique @default(cuid())
-  name       String
-  cnpj       String     @unique
-  createdAt  DateTime   @default(now())
-  updatedAt  DateTime   @updatedAt
-  adminUsers User[]     @relation("AdminCompanies")
-  sellers    User[]     @relation("SellerCompanies")
-  clients    Client[]
-  proposals  Proposal[]
-  contacts   Contact[] // Corrigido para "contacts"
+model Board {
+  id        String   @id
+  name      String
+  createdBy String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  createdByUser User          @relation("BoardCreatedBy", fields: [createdBy], references: [id])
+  members       BoardMember[]
+  lists         List[]
+  labels        Label[]
 }
 
-model User {
-  id                       String          @id @unique @default(cuid())
-  name                     String?
-  email                    String          @unique
-  emailVerified            DateTime?
-  image                    String?
-  stripeCustomerId         String?
-  stripeSubscriptionId     String?
-  stripeSubscriptionStatus String?
-  stripePriceId            String?
-  accounts                 Account[]
-  sessions                 Session[]
-  Authenticators           Authenticator[]
-  password                 String?
-  createdAt                DateTime        @default(now())
-  updatedAt                DateTime        @updatedAt
-  role                     Role            @default(user)
-  tasks                    Task[]
-  proposals                Proposal[]
-  companies                Company[]       @relation("AdminCompanies") // AdminEmpresa pode ter várias empresas
-  sellerInCompanyId        String? // Mudado para String
-  sellerInCompany          Company?        @relation("SellerCompanies", fields: [sellerInCompanyId], references: [id]) // Um vendedor associado a uma empresa
-  clients                  Client[] // Vendedor pode ter vários clientes
+model BoardMember {
+  id       String   @id
+  boardId  String
+  userId   String
+  role     RoleType @default(member)
+  joinedAt DateTime @default(now())
+
+  board Board @relation(fields: [boardId], references: [id])
+  user  User  @relation(fields: [userId], references: [id])
 }
 
-enum Role {
-  admin
-  user
-  adminEmpresa
-  vendedor
+enum RoleType {
+  owner
+  member
+}
+
+model List {
+  id        String   @id
+  name      String
+  boardId   String
+  position  Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  board Board  @relation(fields: [boardId], references: [id])
+  cards Card[]
+}
+
+model Card {
+  id          String    @id
+  title       String
+  description String?
+  listId      String
+  position    Int
+  dueDate     DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  list         List          @relation(fields: [listId], references: [id])
+  comments     Comment[]
+  labels       CardLabel[]
+  activityLogs ActivityLog[]
+}
+
+model Comment {
+  id        String   @id
+  cardId    String
+  userId    String
+  content   String
+  createdAt DateTime @default(now())
+
+  card Card @relation(fields: [cardId], references: [id])
+  user User @relation(fields: [userId], references: [id])
+}
+
+model Label {
+  id      String @id
+  name    String
+  color   String
+  boardId String
+
+  board     Board       @relation(fields: [boardId], references: [id])
+  CardLabel CardLabel[]
+}
+
+model CardLabel {
+  id      String @id
+  cardId  String
+  labelId String
+
+  card  Card  @relation(fields: [cardId], references: [id])
+  label Label @relation(fields: [labelId], references: [id])
+}
+
+model ActivityLog {
+  id        String   @id
+  userId    String
+  cardId    String
+  action    String
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+  card Card @relation(fields: [cardId], references: [id])
 }
 
 model Client {
-  id        String     @id @default(cuid())
-  name      String?
-  email     String?
-  phone     String?
-  companyId String // Mudado para String
-  company   Company    @relation(fields: [companyId], references: [id])
-  userId    String // Mudado para String
-  user      User       @relation(fields: [userId], references: [id])
-  contactId String // Mudado para String
-  contact   Contact    @relation(fields: [contactId], references: [id])
-  proposals Proposal[]
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
+  id        String   @id
+  name      String
+  email     String   @unique
+  phone     String
+  createdAt DateTime @default(now())
+
+  projects             Project[]
+  contacts             Contact[]
+  FinancialTransaction FinancialTransaction[]
 }
 
-model Proposal {
-  id           String       @id @default(cuid())
-  description  String
-  cost         Float // Custo do kit/inversor
-  percentage   Float // Porcentagem de lucro
-  total        Float // Valor final
-  kanbanStatus KanbanStatus @default(BACKLOG) // Status no Kanban
-  companyId    String // Mudado para String
-  company      Company      @relation(fields: [companyId], references: [id])
-  userId       String // Mudado para String
-  user         User         @relation(fields: [userId], references: [id]) // Vendedor responsável
-  clientId     String // Mudado para String
-  client       Client       @relation(fields: [clientId], references: [id])
-  tasks        Task[]
-  createdAt    DateTime     @default(now())
-  updatedAt    DateTime     @updatedAt
+model Project {
+  id              String        @id
+  clientId        String
+  type            ProjectType   @default(custom)
+  status          ProjectStatus @default(pending)
+  totalValue      Float
+  calculatedValue Float
+  description     String?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  client           Client                 @relation(fields: [clientId], references: [id])
+  financialRecords FinancialTransaction[]
+  Task             Task[]
 }
 
-enum KanbanStatus {
-  BACKLOG // Proposta nova, aguardando
-  EM_PROGRESSO // Proposta em andamento
-  CONCLUIDA // Proposta finalizada
-  CANCELADA // Proposta cancelada
+enum ProjectStatus {
+  pending
+  in_progress
+  completed
+  canceled
 }
 
-model Task {
-  id           String       @id @default(cuid())
-  description  String
-  kanbanStatus KanbanStatus @default(BACKLOG) // Status no Kanban
-  deadline     DateTime?
-  proposalId   String
-  proposal     Proposal     @relation(fields: [proposalId], references: [id])
-  userId       String // Mudado para String
-  user         User         @relation(fields: [userId], references: [id])
-  createdAt    DateTime     @default(now())
-  updatedAt    DateTime     @updatedAt
+enum ProjectType {
+  custom
+  solar
 }
 
 model Contact {
-  id        String   @id @default(cuid())
+  id        String   @id
   name      String
   email     String
   phone     String
-  companyId String // Mudado para String
-  company   Company  @relation(fields: [companyId], references: [id])
-  clients   Client[] // Um contato pode estar relacionado a vários clientes
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  clientId  String
+  client    Client   @relation(fields: [clientId], references: [id])
+  Team      Team?    @relation(fields: [teamId], references: [id])
+  teamId    String?
+  User      User?    @relation(fields: [userId], references: [id])
+  userId    String?
 }

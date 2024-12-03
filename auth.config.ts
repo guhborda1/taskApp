@@ -11,6 +11,8 @@ interface userLogin {
 }
 
 import bcrypt from 'bcryptjs';
+import { signInSchema } from "./schema/signInSchema"
+
 
 // Hashear a senha
 const saltAndHashPassword = async (password: string) => {
@@ -57,12 +59,7 @@ export default {
                 password: {},
             },
             authorize: async (credentials) => {
-                if (!credentials?.email || !credentials?.password) {
-                    throw new Error("Email and password are required");
-                }
-
-                const email = String(credentials.email);
-                const password = String(credentials.password);
+                const { email, password } = signInSchema.parse(credentials);
 
                 // Salta e hasheia a senha
                 const pwHash = saltAndHashPassword(password);
@@ -74,7 +71,7 @@ export default {
                     throw new Error("User not found.");
                 }
 
-                return user;
+                return user
             }
 
         })
@@ -122,9 +119,9 @@ export default {
     callbacks: {
         async session({ session, user }: any) {
             session.user = { ...session.user, id: user.id, }
-            
+
             return session;
         },
-        
+
     }
 } satisfies NextAuthConfig
