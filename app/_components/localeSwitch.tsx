@@ -1,14 +1,17 @@
+'use client'
 import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
+import { FlagIcon } from 'lucide-react';
+import { usePathname } from '@/i18n/routing';
 
 export default function LocaleSwitcher() {
-    const t = useTranslations('LocaleSwitcher');
+    const path = usePathname()
     const locale = useLocale();
-    const otherLocale = locale === 'en' ? 'de' : 'en';
+    const otherLocale = locale === 'en-US' ? 'pt' : 'en';
 
     return (
-        <Link href={'/' + otherLocale} prefetch={false}>
-            {t('switchLocale', { locale: otherLocale })}
+        <Link href={'/' + otherLocale + path} prefetch={false}>
+            <FlagIcon />
         </Link>
     );
 }

@@ -4,6 +4,7 @@ import { Separator } from '@/components/ui/separator'
 import { SidebarTrigger } from '@/components/ui/sidebar'
 import React from 'react'
 import { usePathname } from 'next/navigation'
+import LocaleSwitcher from '../localeSwitch'
 type TBreadCrumbProps = {
     homeElement: React.ReactNode,
     separator: React.ReactNode,
@@ -45,6 +46,9 @@ export const DashboardSideBarInsetHeader = ({ separator, listClasses, activeClas
                         }
                     </BreadcrumbList>
                 </Breadcrumb>
+                <div>
+                    <LocaleSwitcher />
+                </div>
             </div>
         </header>
     )

@@ -22,7 +22,6 @@ export default async function RootLayout({
     <html lang={locale} suppressHydrationWarning>
       <body>
         <NextIntlClientProvider messages={messages}>
-
           <AuthProvider>
             <QueryProvider>
               <ThemeProvider attribute="class">
