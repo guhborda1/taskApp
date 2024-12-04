@@ -1,51 +1,29 @@
-import { NextRequest, NextResponse } from "next/server";
-import { getToken } from "next-auth/jwt";
-import createMiddleware from "next-intl/middleware";
-import { getUrl } from "./lib/getUrl";
+import createIntlMiddleware from 'next-intl/middleware';
+import { NextRequest, NextResponse } from 'next/server';
+import { getUrl } from './lib/getUrl';
+import { routing } from './i18n/routing';
 
-// Configuração de internacionalização
-const locales = ["pt-BR", "en"];
-const defaultLocale = "en";
-const publicPages = ["/", "/auth"];
+const intlMiddleware = createIntlMiddleware(routing);
+const PUBLIC_FILE = /\.(.*)$/;
 
-// Middleware de internacionalização
-const intlMiddleware = createMiddleware({
-    locales,
-    defaultLocale,
-});
-
-// Middleware principal
 export default async function middleware(req: NextRequest) {
-    const { pathname } = req.nextUrl;
+    const token = req.cookies.get('authjs.session-token');
+    const pathname = req.nextUrl.pathname;
 
-    // Regex para identificar páginas públicas
-    const publicPathnameRegex = new RegExp(
-        `^(/(${locales.join("|")}))?(${publicPages.join("|")})?/?$`,
-        "i"
-    );
 
-    // Verifica se é uma página pública
-    const isPublicPage = publicPathnameRegex.test(pathname);
 
-    if (isPublicPage) {
-        // Aplica middleware de internacionalização para páginas públicas
-        return intlMiddleware(req);
+    // Redirect based on session
+    if (pathname === '/auth' && token) {
+        return NextResponse.redirect(new URL(getUrl('/dashboard')));
     }
 
-    // Verifica o token de sessão usando next-auth
-    const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
-
-    if (!token) {
-        // Redireciona para a página de login caso não esteja autenticado
-        const signInUrl = getUrl("/auth/");
-        return NextResponse.redirect(new URL(signInUrl, req.url));
+    if (pathname === '/dashboard' && !token) {
+        return NextResponse.redirect(new URL(getUrl('/auth')));
     }
 
-    // Se autenticado, aplica middleware de internacionalização
     return intlMiddleware(req);
 }
 
-// Configuração do matcher
 export const config = {
-    matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
+    matcher: ['/((?!api|_next/static|_next/image|favicon.ico|.*\\..*).*)'], // Adjust the matcher as necessary
 };

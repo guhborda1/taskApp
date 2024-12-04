@@ -27,6 +27,7 @@ export const DashboardSideBarInsetHeader = ({ separator, listClasses, activeClas
                         {pathNames.length > 0 && separator}
                         {
                             pathNames.map((link, index) => {
+                                if (index == 0) return
                                 const href = `/${pathNames.slice(0, index + 1).join('/')}`
                                 const itemClasses = paths === href ? `${listClasses} ${activeClasses}` : listClasses
                                 const itemLink = capitalizeLinks ? link[0].toUpperCase() + link.slice(1, link.length) : link

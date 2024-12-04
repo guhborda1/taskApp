@@ -1,18 +1,28 @@
-import type { NextAuthConfig } from "next-auth"
+import type { NextAuthConfig } from "next-auth";
+import Credentials from "next-auth/providers/credentials";
+import Google from "next-auth/providers/google";
+import { createStripeCustomer } from "./services/stripe";
+import { db } from "./lib/prisma";
 
-import Credentials from "next-auth/providers/credentials"
-import Google from "next-auth/providers/google"
-import { createStripeCustomer } from "./services/stripe"
-import { db } from "./lib/prisma"
+interface User {
+    id: string;
+    name: string;
+    email: string;
+    password: string | null;
+    emailVerified: Date | null;
+    image: string | null;
+    stripeCustomerId: string | null;
+    stripeSubscriptionId: string | null;
+    selectedTeam: string | null;
+}
 
-interface userLogin {
-    email: string,
-    password: string | Promise<string>
+interface UserLogin {
+    email: string;
+    password: string | Promise<string>;
 }
 
 import bcrypt from 'bcryptjs';
-import { signInSchema } from "./schema/signInSchema"
-
+import { signInSchema } from "./schema/signInSchema";
 
 // Hashear a senha
 const saltAndHashPassword = async (password: string) => {
@@ -25,8 +35,7 @@ const comparePasswords = async (plainPassword: string, hashedPassword: string) =
     return await bcrypt.compare(plainPassword, hashedPassword);
 };
 
-const getUserFromDb = async ({ email, password }: userLogin) => {
-    // Certifique-se de que o password foi resolvido caso seja uma Promise
+const getUserFromDb = async ({ email, password }: UserLogin): Promise<User | null> => {
     const resolvedPassword = await password;
 
     const userExist = await db.user.findUnique({
@@ -41,11 +50,10 @@ const getUserFromDb = async ({ email, password }: userLogin) => {
                 return userExist;
             }
         }
-
     }
 
     return null;
-}
+};
 
 export default {
     providers: [
@@ -55,14 +63,18 @@ export default {
         }),
         Credentials({
             credentials: {
-                email: {},
-                password: {},
+                email: { label: "Email", type: "text", placeholder: "Email" },
+                password: {
+                    label: "Password",
+                    type: "password",
+                    placeholder: "Password",
+                },
             },
             authorize: async (credentials) => {
-                const { email, password } = signInSchema.parse(credentials);
+                const { email, password } = await signInSchema.parse(credentials);
 
                 // Salta e hasheia a senha
-                const pwHash = saltAndHashPassword(password);
+                const pwHash = await saltAndHashPassword(password);
 
                 // Verifica se o usuário existe
                 const user = await getUserFromDb({ email, password: pwHash });
@@ -71,9 +83,9 @@ export default {
                     throw new Error("User not found.");
                 }
 
-                return user
+                // Retorne o usuário no formato esperado pelo NextAuth
+                return null
             }
-
         })
     ],
     cookies: {
@@ -83,14 +95,12 @@ export default {
                 path: "/",
                 httpOnly: true,
                 sameSite: "lax",
-                secure: false
+                secure: true
             }
         }
     },
     events: {
-
         async createUser(message: any) {
-            // Only proceed if the user is newly created (i.e., sign-up)
             if (message.user) {
                 try {
                     await createStripeCustomer({
@@ -103,7 +113,6 @@ export default {
             }
         },
         async signIn(message: any) {
-            // Only proceed if the user is newly created (i.e., sign-up)
             if (message.user) {
                 try {
                     await createStripeCustomer({
@@ -118,10 +127,8 @@ export default {
     },
     callbacks: {
         async session({ session, user }: any) {
-            session.user = { ...session.user, id: user.id, }
-
+            session.user = { ...session.user, id: user.id };
             return session;
         },
-
     }
-} satisfies NextAuthConfig
+} satisfies NextAuthConfig;

@@ -20,14 +20,7 @@ export const config = {
       },
 
     },
-    products: {
-      tag: {
-        name: 'Tag NFC',
-        priceId: 'price_1PpDo1KOsHNcKX48fNz4mfNm', // Coloque aqui o ID do preço do produto no Stripe
-        unitAmount: 1990, // Preço da Tag NFC (ex: R$19,90 em centavos)
-        currency: 'brl', // Moeda
-      },
-    }
+
 
   },
 }

@@ -11,7 +11,7 @@ declare module "next-auth"
             name: string
             email: string
             image?: string
-            roleId: string
+            roleId?: string
             stripeCustomerId: string | null;
             stripeSubscriptionId: string | null;
             stripeSubscriptionStatus: string | null;
@@ -24,7 +24,7 @@ declare module "next-auth"
         name: string
         email: string
         image?: string
-        roleId: string
+        roleId?: string
         stripeCustomerId: string | null;
         stripeSubscriptionId: string | null;
         stripeSubscriptionStatus: string | null;

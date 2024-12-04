@@ -142,9 +142,9 @@ enum TaskStatus {
 }
 
 model User {
-  id                       String             @id @default(cuid())
+  id                       String    @id @default(cuid())
   name                     String
-  email                    String             @unique
+  email                    String    @unique
   emailVerified            DateTime?
   image                    String?
   stripeCustomerId         String?
@@ -152,23 +152,25 @@ model User {
   stripeSubscriptionStatus String?
   stripePriceId            String?
   password                 String?
-  createdAt                DateTime           @default(now())
-  updatedAt                DateTime           @updatedAt
-  roleId                   String             @default("1")
+  createdAt                DateTime  @default(now())
+  updatedAt                DateTime  @updatedAt
+  roleId                   String?   @default("USER")
   selectedBusiness         String?
   selectedTeam             String?
-  role                     Role               @relation(fields: [roleId], references: [id])
-  accounts                 Account[]
-  sessions                 Session[]
-  authenticators           Authenticator[]
-  boardsCreated            Board[]            @relation("BoardCreatedBy")
-  boards                   BoardMember[]
-  teamMemberships          TeamMember[]
-  tasksAssigned            Task[]             @relation("TaskAssignee")
-  organizationUsers        OrganizationUser[]
-  Comment                  Comment[]
-  ActivityLog              ActivityLog[]
-  Contact                  Contact[]
+
+  accounts          Account[]
+  sessions          Session[]
+  authenticators    Authenticator[]
+  boardsCreated     Board[]            @relation("BoardCreatedBy")
+  boards            BoardMember[]
+  teamMemberships   TeamMember[]
+  tasksAssigned     Task[]             @relation("TaskAssignee")
+  organizationUsers OrganizationUser[]
+  Comment           Comment[]
+  ActivityLog       ActivityLog[]
+  Contact           Contact[]
+
+  Role Role? @relation(fields: [roleId], references: [id])
 }
 
 model FinancialTransaction {

@@ -4,11 +4,12 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem,
 import { SidebarFooter, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar'
 
 import { BadgeCheck, Bell, ChevronsUpDown, CreditCard, LogOut, Sparkles } from 'lucide-react'
-import { signOut } from 'next-auth/react'
+import { signOut, useSession } from 'next-auth/react'
 import React from 'react'
 import { userDataInterface } from '../layout'
 
-export const DasboardSidebarFooter = (data: userDataInterface) => {
+export const DasboardSidebarFooter = () => {
+    const { data: session, status } = useSession()
     return (
         <SidebarFooter>
             <SidebarMenu>
@@ -21,17 +22,17 @@ export const DasboardSidebarFooter = (data: userDataInterface) => {
                             >
                                 <Avatar className="h-8 w-8 rounded-lg">
                                     <AvatarImage
-                                        src={data.data.avatar}
-                                        alt={data.data.name}
+                                        src={session?.user.image}
+                                        alt={session?.user.name}
                                     />
                                     <AvatarFallback className="rounded-lg">MRT</AvatarFallback>
                                 </Avatar>
                                 <div className="grid flex-1 text-left text-sm leading-tight">
                                     <span className="truncate font-semibold">
-                                        {data.data.name}
+                                        {session?.user.name}
                                     </span>
                                     <span className="truncate text-xs">
-                                        {data.data.email}
+                                        {session?.user.email}
                                     </span>
                                 </div>
                                 <ChevronsUpDown className="ml-auto size-4" />
@@ -47,19 +48,19 @@ export const DasboardSidebarFooter = (data: userDataInterface) => {
                                 <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                                     <Avatar className="h-8 w-8 rounded-lg">
                                         <AvatarImage
-                                            src={data.data.avatar}
-                                            alt={data.data.name}
+                                            src={session?.user.image}
+                                            alt={session?.user.name}
                                         />
                                         <AvatarFallback className="rounded-lg">
-                                            CN
+                                            {session?.user.name.charAt(0)}
                                         </AvatarFallback>
                                     </Avatar>
                                     <div className="grid flex-1 text-left text-sm leading-tight">
                                         <span className="truncate font-semibold">
-                                            {data.data.name}
+                                            {session?.user.name}
                                         </span>
                                         <span className="truncate text-xs">
-                                            {data.data.email}
+                                            {session?.user.email}
                                         </span>
                                     </div>
                                 </div>

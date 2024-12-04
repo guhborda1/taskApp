@@ -1,8 +1,10 @@
+import { useTranslations } from "next-intl"
 
 
 const DashboardPage = () => {
+    const t = useTranslations()
     return (
-        <div>DashboardPage</div>
+        <div>{t('Index.welcome')}</div>
     )
 }
 export default DashboardPage

@@ -1,6 +1,6 @@
 const createNextIntlPlugin = require ('next-intl/plugin');
 
-const withNextIntl = createNextIntlPlugin ();
+const withNextIntl = createNextIntlPlugin ('./i18n/request.ts');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -23,6 +23,19 @@ const nextConfig = {
         hostname: 'avatars.githubusercontent.com',
       },
     ],
+  },
+  async headers () {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'Access-Control-Allow-Origin',
+            value: '*', // ou o domínio específico que você quer permitir
+          },
+        ],
+      },
+    ];
   },
 };
 

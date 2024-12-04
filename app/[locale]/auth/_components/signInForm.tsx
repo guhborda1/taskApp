@@ -30,6 +30,8 @@ export function SignInForm() {
     const { toast } = useToast();
     const router = useRouter();
     const m = useTranslations("MESSAGES");
+    const au = useTranslations("AUTH");
+
     const {
         register,
         handleSubmit,
@@ -111,7 +113,7 @@ export function SignInForm() {
                                     </div>
                                     <div className="flex flex-col gap-2">
                                         <Button type="submit" className="w-full">
-                                            Login
+                                            {au('SIGN_IN.TITLE')}
                                         </Button>
 
                                     </div>

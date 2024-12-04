@@ -1,4 +1,4 @@
-"user server"
+'use client'
 import {
 
     BookOpen,
@@ -64,10 +64,10 @@ import {
 
 import { DashboardSideBarInsetHeader } from './dashboardSideBarInsetHeader/dashboardSideBarInsetHeader'
 import { DasboardSidebarFooter } from './dasboardSidebarFooter/dasboardSidebarFooter'
-import { Session } from "@/types/next-auth"
+
 import React from "react"
 import { redirect, usePathname } from "next/navigation"
-import { auth } from "@/services/auth"
+import { useSession } from "next-auth/react"
 
 
 export interface userDataInterface {
@@ -75,8 +75,8 @@ export interface userDataInterface {
 
 
 }
-export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
-    const session = await auth()
+export default function DashboardLayout({ children }: { children: React.ReactNode }) {
+    const { data: session, status } = useSession()
     const paths = usePathname()
     const pathNames = paths.split('/').filter(path => path)
     if (!session?.user)
@@ -336,7 +336,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
                         </SidebarGroupContent>
                     </SidebarGroup>
                 </SidebarContent>
-                <DasboardSidebarFooter data={data.user} />
+                <DasboardSidebarFooter />
             </Sidebar>
             <SidebarInset>
                 <DashboardSideBarInsetHeader homeElement={<HomeIcon size={12} />}
@@ -354,6 +354,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
                 </div>
             </SidebarInset>
         </SidebarProvider>
+
 
     )
 }
