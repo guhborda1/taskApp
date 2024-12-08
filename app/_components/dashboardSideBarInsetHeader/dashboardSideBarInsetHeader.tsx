@@ -4,7 +4,8 @@ import { Separator } from '@/components/ui/separator'
 import { SidebarTrigger } from '@/components/ui/sidebar'
 import React from 'react'
 import { usePathname } from 'next/navigation'
-import LocaleSwitcher from '../localeSwitch'
+import { LocaleSwitcher } from '../switchers/localeSwitch'
+
 type TBreadCrumbProps = {
     homeElement: React.ReactNode,
     separator: React.ReactNode,

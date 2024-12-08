@@ -79,8 +79,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     const { data: session, status } = useSession()
     const paths = usePathname()
     const pathNames = paths.split('/').filter(path => path)
-    if (!session?.user)
-        return redirect('/auth')
+
     const data = {
         user: {
             name: session?.user.name,

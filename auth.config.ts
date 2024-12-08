@@ -84,7 +84,7 @@ export default {
                 }
 
                 // Retorne o usuário no formato esperado pelo NextAuth
-                return null
+                return user | null
             }
         })
     ],

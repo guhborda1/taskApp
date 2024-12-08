@@ -1,7 +1,11 @@
 {
     "Index": {
       "title": "Hello world!",
-      "welcome":"Welcomeme"
+      "welcome":"Welcome",
+      "BUTTONS":{
+        "DASHBOARD":"Dashboard",
+        "ACCOUNT":"Account"
+      }
     },
     "AUTH": {
       "EMAIL": "Email",

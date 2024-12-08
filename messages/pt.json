@@ -1,73 +1,77 @@
 {
   "Index": {
     "title": "Olá Mundo",
-    "welcome":"Bemvindo"
+    "welcome": "Bem-vindo",
+    "BUTTONS":{
+      "DASHBOARD":"Painel",
+      "ACCOUNT":"Conta"
+    }
   },
   "AUTH": {
     "EMAIL": "Email",
-    "PASSWORD": "Password",
-    "USERNAME": "Username",
+    "PASSWORD": "Senha",
+    "USERNAME": "Nome de usuário",
     "SIGN_IN": {
-      "TITLE": "Sign in",
-      "DESC": "Welcome back to ....",
-      "SUBMIT_BTN": "Sign in",
-      "FORGOT_PASSWORD": "Forgot password?",
+      "TITLE": "Entrar",
+      "DESC": "Bem-vindo de volta a ....",
+      "SUBMIT_BTN": "Entrar",
+      "FORGOT_PASSWORD": "Esqueceu a senha?",
       "DONT_HAVE_ACCOUNT": {
-        "FIRST": "Don't have an account?",
-        "SECOND": "Sign up"
+        "FIRST": "Não tem uma conta?",
+        "SECOND": "Cadastre-se"
       },
       "PROVIDERS": {
-        "GOOGLE": "Sign in with Google",
-        "APPLE": "Sign in with Apple",
-        "GITHUB": "Sign in with Github"
+        "GOOGLE": "Entrar com o Google",
+        "APPLE": "Entrar com a Apple",
+        "GITHUB": "Entrar com o Github"
       }
     },
     "SIGN_UP": {
-      "TITLE": "Sign up",
-      "DESC": "Create your account",
-      "SUBMIT_BTN": "Sign up",
-      "FORGOT_PASSWORD": "Forgot password?",
+      "TITLE": "Cadastrar-se",
+      "DESC": "Crie sua conta",
+      "SUBMIT_BTN": "Cadastrar-se",
+      "FORGOT_PASSWORD": "Esqueceu a senha?",
       "HAVE_ACCOUNT": {
-        "FIRST": "Already have an account?",
-        "SECOND": "Sign in"
+        "FIRST": "Já tem uma conta?",
+        "SECOND": "Entrar"
       },
       "TERMS": {
-        "FIRST": "By signing up you agree to our",
-        "SECOND": "Terms of Service"
+        "FIRST": "Ao se cadastrar, você concorda com nossos",
+        "SECOND": "Termos de Serviço"
       },
       "PROVIDERS": {
-        "GOOGLE": "Sign up with Google",
-        "APPLE": "Sign up with Apple",
-        "GITHUB": "Sign up with Github"
+        "GOOGLE": "Cadastrar-se com o Google",
+        "APPLE": "Cadastrar-se com a Apple",
+        "GITHUB": "Cadastrar-se com o Github"
       }
     },
     "NEW_WORKSPACE": {
       "INPUTS": {
-        "NAME": "Workspace name",
-        "FILE": "Workspace icon (optional)"
+        "NAME": "Nome do workspace",
+        "FILE": "Ícone do workspace (opcional)"
       },
       "PLACEHOLDERS": {
-        "NAME": "eg. OpenStudio"
+        "NAME": "ex. OpenStudio"
       },
-      "IMAGE": "Only .jpeg, .jpg, .png, .webp, .gif types are supported",
-      "BTN_ADD": "Create",
-      "BTN_PENDING": "Creating. Please wait"
+      "IMAGE": "Somente tipos .jpeg, .jpg, .png, .webp, .gif são suportados",
+      "BTN_ADD": "Criar",
+      "BTN_PENDING": "Criando. Por favor, aguarde"
     }
   },
   "CHANGE_PROFILE_IMAGE": {
-    "TITLE": "Send a photo!",
-    "BUTTON": "Choose a photo"
+    "TITLE": "Envie uma foto!",
+    "BUTTON": "Escolher uma foto"
   },
   "ONBOARDING_FORM": {
     "FIRST_STEP": {
       "TITLE": {
-        "FIRST": "Let's prepare you",
-        "SECOND": "ready"
+        "FIRST": "Vamos preparar você",
+        "SECOND": "pronto"
       },
-      "PHOTO": "Add photo",
+      "PHOTO": "Adicionar foto",
       "INPUTS": {
-        "NAME": "First name",
-        "SURNAME": "Surname"
+        "NAME": "Nome",
+        "SURNAME": "Sobrenome"
       },
       "PLACEHOLDER": {
         "NAME": "Vineeth",
@@ -75,780 +79,780 @@
       }
     },
     "SECOND_STEP": {
-      "TITLE": "How will you use",
-      "INFO": "We use this information to personalize your experience",
-      "WORK": "For work",
-      "STUDY": "For study",
-      "PERSONAL": "For personal use"
+      "TITLE": "Como você usará",
+      "INFO": "Usamos essas informações para personalizar sua experiência",
+      "WORK": "Para trabalho",
+      "STUDY": "Para estudos",
+      "PERSONAL": "Para uso pessoal"
     },
     "THIRD_STEP": {
-      "TITLE": "Create a workspace",
+      "TITLE": "Crie um workspace",
       "INPUTS": {
-        "NAME": "Workspace name",
-        "FILE": "Workspace icon (optional)"
+        "NAME": "Nome do workspace",
+        "FILE": "Ícone do workspace (opcional)"
       },
       "PLACEHOLDERS": {
-        "NAME": "eg. Open Studio"
+        "NAME": "ex. Open Studio"
       },
-      "IMAGE": "Only .jpeg, .jpg, .png, .webp, .gif types are supported"
+      "IMAGE": "Somente tipos .jpeg, .jpg, .png, .webp, .gif são suportados"
     },
     "FINISH": {
-      "TITLE": "That's it!",
-      "DESC_FIRST": "You can already start using",
-      "DESC_SECOND": "by clicking the button below"
+      "TITLE": "É isso!",
+      "DESC_FIRST": "Você já pode começar a usar",
+      "DESC_SECOND": "clicando no botão abaixo"
     },
-    "START_BTN": "Start",
-    "NEXT_BTN": "Continue",
-    "IS_DONE": "just a moment more"
+    "START_BTN": "Começar",
+    "NEXT_BTN": "Continuar",
+    "IS_DONE": "só mais um momento"
   },
   "UPLOAD_FILE": {
-    "UPLOAD": "Upload"
+    "UPLOAD": "Carregar"
   },
   "INVITE": {
-    "HINT": "Add to workspace",
-    "INVITE": "Invite",
-    "TITLE": "Invite to",
-    "DESC": "Copy the invitation link and send it to the people you want to invite to this workspace. You can set up roles and generate a new link."
+    "HINT": "Adicionar ao workspace",
+    "INVITE": "Convidar",
+    "TITLE": "Convidar para",
+    "DESC": "Copie o link de convite e envie-o para as pessoas que você deseja convidar para este workspace. Você pode configurar funções e gerar um novo link."
   },
   "LEAVE_FROM_WORKSPACE": {
-    "LEAVE": "Leave",
-    "TITLE": "Leave",
-    "DESC": "You can leave the workspace at any time and return to it whenever you're invited back.",
-    "WARNING": "All tasks and mind maps from this workspace that have been added to the “Starred” tab will be removed from it. The same applies to activities assigned to you.",
-    "LOADING_BTN": "Leaving. Please wait"
+    "LEAVE": "Sair",
+    "TITLE": "Sair",
+    "DESC": "Você pode sair do workspace a qualquer momento e retorná-lo sempre que for convidado de volta.",
+    "WARNING": "Todas as tarefas e mapas mentais deste workspace que foram adicionados à aba 'Favoritos' serão removidos. O mesmo se aplica às atividades atribuídas a você.",
+    "LOADING_BTN": "Saindo. Por favor, aguarde"
   },
   "MESSAGES": {
     "ERRORS": {
-      "DEFAULT": "Oh no..Something went wrong. Please try again",
-      "TAKEN_USERNAME": "This username is already taken",
-      "TAKEN_EMAIL": "This email is already in use...",
-      "DB_ERROR": "We are currently having problems. Please try again later",
-      "WRONG_DATA": "The data you provided is incorrect. Please provide the correct ones.",
-      "NO_USER": "User was not found. Please enter a valid email",
-      "WRONG_PASSWORD": "The entered password is incorrect. Please enter the correct one.",
-      "IMAGE_PROFILE_UPDATE": "Failed to update your profile image. Please try again",
-      "IMAGE_PROFILE_DELETE": "Failed to delete your profile image. Please try again.",
-      "UPLOAD_FAILED": "Failed to upload your file. Please try again.",
-      "WORKSPACE_ICON_ADDED": "Failed to add workspace icon. Please try again",
-      "NO_USER_API": "User not Found",
-      "UNAUTHORIZED": "Unauthorized. Please sign in!",
-      "TOO_MANY_WORKSPACES": "The limit on the number of workspaces that can be created has been reached"
+      "DEFAULT": "Oh não.. Algo deu errado. Por favor, tente novamente",
+      "TAKEN_USERNAME": "Este nome de usuário já está em uso",
+      "TAKEN_EMAIL": "Este email já está em uso...",
+      "DB_ERROR": "Estamos tendo problemas atualmente. Por favor, tente novamente mais tarde",
+      "WRONG_DATA": "Os dados fornecidos estão incorretos. Por favor, forneça os corretos.",
+      "NO_USER": "Usuário não encontrado. Por favor, insira um email válido",
+      "WRONG_PASSWORD": "A senha inserida está incorreta. Por favor, insira a correta.",
+      "IMAGE_PROFILE_UPDATE": "Falha ao atualizar sua imagem de perfil. Por favor, tente novamente",
+      "IMAGE_PROFILE_DELETE": "Falha ao excluir sua imagem de perfil. Por favor, tente novamente.",
+      "UPLOAD_FAILED": "Falha ao carregar seu arquivo. Por favor, tente novamente.",
+      "WORKSPACE_ICON_ADDED": "Falha ao adicionar ícone ao workspace. Por favor, tente novamente",
+      "NO_USER_API": "Usuário não encontrado",
+      "UNAUTHORIZED": "Não autorizado. Por favor, faça login!",
+      "TOO_MANY_WORKSPACES": "O limite do número de workspaces que podem ser criados foi alcançado"
     },
-    "Configuration":"Ops.. something went wrong",
+    "Configuration": "Ops.. algo deu errado",
     "SUCCESS": {
-      "SIGN_UP": "Account was created!",
-      "SIGN_IN": "You have been logged in!",
-      "IMAGE_PROFILE_UPDATE": "Your profile image has been updated!",
-      "IMAGE_PROFILE_DELETE": "Your profile image has been deleted!",
-      "ONBOARDING_COMPLETE": "Welcome to Super Productive!",
-      "PASSWORD_CHANGED": "Password has been changed!",
-      "NEW_WORKSPACE": "The workspace has been created!"
+      "SIGN_UP": "Conta criada!",
+      "SIGN_IN": "Você foi logado!",
+      "IMAGE_PROFILE_UPDATE": "Sua imagem de perfil foi atualizada!",
+      "IMAGE_PROFILE_DELETE": "Sua imagem de perfil foi excluída!",
+      "ONBOARDING_COMPLETE": "Bem-vindo ao Super Productive!",
+      "PASSWORD_CHANGED": "Senha alterada!",
+      "NEW_WORKSPACE": "O workspace foi criado!"
     },
     "PENDING": {
-      "LOADING": "Please wait"
+      "LOADING": "Por favor, aguarde"
     },
     "SCHEMA": {
       "PASSWORD": {
-        "MIN": "Password must have at least 6 characters",
-        "UPPERCASE": "Password must contain at least one uppercase letter",
-        "LOWERCASE": "Password must contain at least one lowercase letter",
-        "DIGIT": "Password must contain at least one digit"
+        "MIN": "A senha deve ter pelo menos 6 caracteres",
+        "UPPERCASE": "A senha deve conter pelo menos uma letra maiúscula",
+        "LOWERCASE": "A senha deve conter pelo menos uma letra minúscula",
+        "DIGIT": "A senha deve conter pelo menos um dígito"
       },
-      "EMAIL": "Please enter a valid email",
+      "EMAIL": "Por favor, insira um email válido",
       "USERNAME": {
-        "SHORT": "Username is too short",
-        "SPECIAL_CHARS": "Username must only contain letters and digits"
+        "SHORT": "Nome de usuário muito curto",
+        "SPECIAL_CHARS": "O nome de usuário deve conter apenas letras e dígitos"
       },
       "IMAGE": {
-        "MAX": "Max image size is 5MB",
-        "SUPPORTED": "Only .jpeg, .jpg, .png, .webp, .gif types are supported"
+        "MAX": "Tamanho máximo da imagem é 5MB",
+        "SUPPORTED": "Somente os tipos .jpeg, .jpg, .png, .webp, .gif são suportados"
       },
       "WORKSPACE": {
-        "SHORT": "Workspace name is too short",
-        "SPECIAL_CHARS": "Workspace name must only contain letters and digits"
+        "SHORT": "Nome do workspace muito curto",
+        "SPECIAL_CHARS": "O nome do workspace deve conter apenas letras e dígitos"
       },
-      "LANGUAGE": "Please select a language",
-      "CHOOSE_ONE": "Please select one of the options"
+      "LANGUAGE": "Por favor, selecione um idioma",
+      "CHOOSE_ONE": "Por favor, selecione uma das opções"
     }
   },
   "SIDEBAR": {
     "MAIN": {
-      "HOME_HOVER": "Home",
-      "LOG_OUT_HOVER": "Log out",
-      "SETTINGS_HOVER": "Settings",
+      "HOME_HOVER": "Início",
+      "LOG_OUT_HOVER": "Sair",
+      "SETTINGS_HOVER": "Configurações",
       "POMODORO_HOVER": "Pomodoro",
-      "STARRED_HOVER": "Starred",
-      "ASSIGNED_TO_ME_HOVER": "Assigned to me",
-      "CALENDAR_HOVER": "Calendar",
-      "NEW_WORKSPACE_HOVER": "New Workspace",
-      "NEW_WORKSPACE_DIALOG_TITLE": "Create new workspace",
-      "NEW_WORKSPACE_DIALOG_DESC": "some text"
+      "STARRED_HOVER": "Favoritos",
+      "ASSIGNED_TO_ME_HOVER": "Atribuído a mim",
+      "CALENDAR_HOVER": "Calendário",
+      "NEW_WORKSPACE_HOVER": "Novo Workspace",
+      "NEW_WORKSPACE_DIALOG_TITLE": "Criar novo workspace",
+      "NEW_WORKSPACE_DIALOG_DESC": "algum texto"
     },
     "SETTINGS": {
-      "GENERAL": "General",
-      "ACCOUNT": "Account",
-      "SECURITY": "Security",
-      "THEME": "Theme",
+      "GENERAL": "Geral",
+      "ACCOUNT": "Conta",
+      "SECURITY": "Segurança",
+      "THEME": "Tema",
       "WORKSPACE": "Workspace"
     },
     "POMODORO": {
-      "TIMER": "Timer",
-      "SETTINGS": "Settings"
+      "TIMER": "Temporizador",
+      "SETTINGS": "Configurações"
     },
     "WORKSPACE_OPTIONS": {
-      "SHORTCUTS": "Shortcuts",
-      "TASKS": "Tasks",
-      "MIND_MAPS": "Mind maps",
-      "SCHEDULES": "Schedules",
-      "STUDY": "Study",
-      "FILES": "Files",
-      "DEFAULT_NAME": "Untitled",
-      "ACTIONS": "Actions",
-      "ADD_TASK": "Add task",
-      "ADD_MIND_MAP": "Add mind map"
+      "SHORTCUTS": "Atalhos",
+      "TASKS": "Tarefas",
+      "MIND_MAPS": "Mapas mentais",
+      "SCHEDULES": "Programações",
+      "STUDY": "Estudo",
+      "FILES": "Arquivos",
+      "DEFAULT_NAME": "Sem título",
+      "ACTIONS": "Ações",
+      "ADD_TASK": "Adicionar tarefa",
+      "ADD_MIND_MAP": "Adicionar mapa mental"
     }
   },
   "COMMON": {
-    "WELCOMEBACK": "Welcome back",
-    "LANG_HOVER": "Change language",
-    "THEME_HOVER": "Change Theme",
-    "DARK": "Dark",
-    "LIGHT": "Light",
-    "SYSTEM": "System",
-    "LOG_OUT": "Log out",
-    "SETTINGS": "Settings",
-    "WARNING": "WARNING",
-    "NOTICE": "NOTICE",
+    "WELCOMEBACK": "Bem-vindo de volta",
+    "LANG_HOVER": "Mudar idioma",
+    "THEME_HOVER": "Mudar tema",
+    "DARK": "Escuro",
+    "LIGHT": "Claro",
+    "SYSTEM": "Sistema",
+    "LOG_OUT": "Sair",
+    "SETTINGS": "Configurações",
+    "WARNING": "AVISO",
+    "NOTICE": "AVISO",
     "DEFAULT_NAME": {
-      "MIND_MAP": "Untitled Mind Map",
-      "TASK": "Untitled Task"
+      "MIND_MAP": "Mapa Mental Sem Título",
+      "TASK": "Tarefa Sem Título"
     },
     "ACTIVE_WORKSPACES": {
-      "FIRST": "You have",
-      "SECOND": "out of",
-      "THIRD": "active workspaces"
+      "FIRST": "Você tem",
+      "SECOND": "de",
+      "THIRD": "workspaces ativos"
     },
-    "BACK_BTN": "Back",
+    "BACK_BTN": "Voltar",
     "SAVING_STATUS": {
-      "SAVED": "Saved",
-      "SAVING": "Saving",
-      "UNSAVED": "Unsaved"
+      "SAVED": "Salvo",
+      "SAVING": "Salvando",
+      "UNSAVED": "Não salvo"
     },
     "TAG": {
-      "FILTER": "Filter",
-      "NEW_TAG": "New tag",
+      "FILTER": "Filtrar",
+      "NEW_TAG": "Nova tag",
       "TAG": "Tag",
-      "ERROR": "Oops... Something went wrong",
-      "ERROR_BTN": "Try again",
-      "NOT_FOUND": "Not found",
+      "ERROR": "Ops... Algo deu errado",
+      "ERROR_BTN": "Tente novamente",
+      "NOT_FOUND": "Não encontrado",
       "TAGS_HEADING": "TAGS",
-      "NEW_HEADING": "NEW",
-      "ADD_TAG": "Add tag",
-      "COLORS": "Colors",
-      "TAG_NAME": "Name",
+      "NEW_HEADING": "NOVO",
+      "ADD_TAG": "Adicionar tag",
+      "COLORS": "Cores",
+      "TAG_NAME": "Nome",
       "BTNS": {
-        "CREATE": "Create",
-        "CANCEL": "Cancel",
-        "DELETE": "Delete",
-        "UPDATE": "Update"
+        "CREATE": "Criar",
+        "CANCEL": "Cancelar",
+        "DELETE": "Excluir",
+        "UPDATE": "Atualizar"
       }
     },
     "EDITED_ITEM_SENTENCE": {
-      "MIND_MAP": "Mind map edited",
-      "TASK": "Task edited",
-      "BY": "by",
-      "IN": " - in"
+      "MIND_MAP": "Mapa mental editado",
+      "TASK": "Tarefa editada",
+      "BY": "por",
+      "IN": " - em"
     }
   },
   "PERMISSIONS": {
-    "WAIT": "Please wait",
-    "PERMISSIONS": "PERMISSIONS",
-    "COPY": "Copy link",
+    "WAIT": "Por favor, aguarde",
+    "PERMISSIONS": "PERMISSÕES",
+    "COPY": "Copiar link",
     "OWNER": {
-      "TITLE": "Owner"
+      "TITLE": "Proprietário"
     },
     "ADMIN": {
       "TITLE": "Admin",
-      "DESC": "It has all possible rights, including to change the settings of the workspace and to manage other users."
+      "DESC": "Tem todos os direitos possíveis, incluindo mudar as configurações do workspace e gerenciar outros usuários."
     },
     "EDITOR": {
       "TITLE": "Editor",
-      "DESC": "He has all full access to the workspace and has rights to edit and delete content in the workspace. However, he does hot have access to the settings of the area."
+      "DESC": "Tem acesso total ao workspace e possui direitos de editar e excluir conteúdo no workspace. No entanto, não tem acesso às configurações da área."
     },
     "VIEWER": {
-      "TITLE": "Viewer",
-      "DESC": "He has full access to the workspace, but cannot edit or delete anything. He also does not have access to the area settings."
+      "TITLE": "Visualizador",
+      "DESC": "Tem acesso total ao workspace, mas não pode editar ou excluir nada. Também não tem acesso às configurações da área."
     }
   },
   "TASK": {
     "HEADER": {
-      "PLACEHOLDER": "Untitled task",
+      "PLACEHOLDER": "Tarefa Sem Título",
       "DATE": {
-        "PICK": "Pic a date",
-        "INFO": "If you select a date, the task will be added to your calendar"
+        "PICK": "Escolher uma data",
+        "INFO": "Se você selecionar uma data, a tarefa será adicionada ao seu calendário"
       },
       "TAG": {
-        "FILTER": "Filter",
-        "NEW_TAG": "New tag",
+        "FILTER": "Filtrar",
+        "NEW_TAG": "Nova tag",
         "TAG": "Tag",
-        "ERROR": "Oops... Something went wrong",
-        "ERROR_BTN": "Try again",
-        "NOT_FOUND": "Not found",
+        "ERROR": "Ops... Algo deu errado",
+        "ERROR_BTN": "Tente novamente",
+        "NOT_FOUND": "Não encontrado",
         "TAGS_HEADING": "TAGS",
-        "NEW_HEADING": "NEW",
-        "ADD_TAG": "Add tag",
-        "COLORS": "Colors",
-        "TAG_NAME": "Name",
+        "NEW_HEADING": "NOVO",
+        "ADD_TAG": "Adicionar tag",
+        "COLORS": "Cores",
+        "TAG_NAME": "Nome",
         "BTNS": {
-          "CREATE": "Create",
-          "CANCEL": "Cancel",
-          "DELETE": "Delete",
-          "UPDATE": "Update"
+          "CREATE": "Criar",
+          "CANCEL": "Cancelar",
+          "DELETE": "Excluir",
+          "UPDATE": "Atualizar"
         }
       }
     },
     "EDITOR": {
-      "PLACEHOLDER": "Write something cool 📝",
-      "WORDS": "number of words:",
-      "CHARS": "chars",
+      "PLACEHOLDER": "Escreva algo legal 📝",
+      "WORDS": "número de palavras:",
+      "CHARS": "caracteres",
       "IMAGE": {
-        "TITLE": "Add image",
-        "DESC": "You can add a photo by providing a link to it or you can import it from your device.",
-        "LINK": "Add via the link",
-        "UPLOAD": "Import from device",
+        "TITLE": "Adicionar imagem",
+        "DESC": "Você pode adicionar uma foto fornecendo um link para ela ou importá-la do seu dispositivo.",
+        "LINK": "Adicionar via link",
+        "UPLOAD": "Importar do dispositivo",
         "LINK_TAB": {
-          "PLACEHOLDER": "Photo link",
-          "BTN_ADD": "Add image",
-          "BTN_PENDING": "Checking the link"
+          "PLACEHOLDER": "Link da foto",
+          "BTN_ADD": "Adicionar imagem",
+          "BTN_PENDING": "Verificando o link"
         },
         "UPLOAD_TAB": {
-          "TYPES": "Only the types .jpeg, .jpg, .png, .webp, .gif are allowed",
-          "BTN_ADD": "Add image",
-          "BTN_PENDING": "Adding"
+          "TYPES": "Somente os tipos .jpeg, .jpg, .png, .webp, .gif são permitidos",
+          "BTN_ADD": "Adicionar imagem",
+          "BTN_PENDING": "Adicionando"
         }
       },
       "HOVER": {
-        "H1": "Title 1",
-        "H2": "Title 2",
-        "H3": "Title 3",
-        "H4": "Title 4",
-        "H5": "Title 5",
-        "H6": "Title 6",
-        "BOLD": "Bold",
-        "ITALIC": "Italic",
-        "STRIKETHROUGH": "Strikethrough",
-        "UNDERLINE": "Underline",
-        "CODE": "Code",
-        "UL": "Unordered list",
-        "OL": "Ordered list",
-        "LINK": "Add hyperlink",
-        "IMAGE": "Add image",
-        "COLOR": "Highlight",
-        "COLOR_DEFAULT": "Default color",
-        "UNDO": "Undo",
-        "REDO": "Redo",
-        "DELETE": "Delete"
+        "H1": "Título 1",
+        "H2": "Título 2",
+        "H3": "Título 3",
+        "H4": "Título 4",
+        "H5": "Título 5",
+        "H6": "Título 6",
+        "BOLD": "Negrito",
+        "ITALIC": "Itálico",
+        "STRIKETHROUGH": "Riscado",
+        "UNDERLINE": "Sublinhado",
+        "CODE": "Código",
+        "UL": "Lista não ordenada",
+        "OL": "Lista ordenada",
+        "LINK": "Adicionar link",
+        "IMAGE": "Adicionar imagem",
+        "COLOR": "Destaque",
+        "COLOR_DEFAULT": "Cor padrão",
+        "UNDO": "Desfazer",
+        "REDO": "Refazer",
+        "DELETE": "Excluir"
       },
       "READ_ONLY": {
-        "NO_DATE": "not recorded in the calendar",
-        "NO_TITLE": "Untitled task",
-        "NO_CONTENT": "Task without content",
-        "DELETE": "Delete",
-        "EDIT": "Edit",
-        "ADD_TO_FAV": "Add to favourites",
-        "REMOVE_FROM_FAV": "Remove from favourites",
-        "CREATOR_INFO": "Created by",
-        "EDITOR_INFO": "Edited by",
+        "NO_DATE": "não registrado no calendário",
+        "NO_TITLE": "Tarefa sem título",
+        "NO_CONTENT": "Tarefa sem conteúdo",
+        "DELETE": "Excluir",
+        "EDIT": "Editar",
+        "ADD_TO_FAV": "Adicionar aos favoritos",
+        "REMOVE_FROM_FAV": "Remover dos favoritos",
+        "CREATOR_INFO": "Criado por",
+        "EDITOR_INFO": "Editado por",
         "DIALOG": {
-          "TITLE": "Delete task",
-          "DESC": "Are you sure you want to delete this note? You will lose all the data it contains and the activities associated with it. Deletion is irreversible",
-          "BTN_DELETE": "Delete task",
-          "BTN_PENDING": "Deleting"
+          "TITLE": "Excluir tarefa",
+          "DESC": "Você tem certeza de que deseja excluir esta nota? Você perderá todos os dados que ela contém e as atividades associadas a ela. A exclusão não pode ser desfeita",
+          "BTN_DELETE": "Excluir tarefa",
+          "BTN_PENDING": "Excluindo"
         }
       }
     },
     "BTN": {
-      "SAVE_TASK": "Add task"
+      "SAVE_TASK": "Adicionar tarefa"
     },
     "ASSIGNMENT": {
-      "TRIGGER": "Assign",
-      "ERROR_MSG": "Something went wrong, please try again",
-      "ERROR_BTN": "Try again",
-      "PLACEHOLDER": "Filter",
-      "NOT_FOUND": "User not found",
-      "HEADING": "ASSIGN TO"
+      "TRIGGER": "Atribuir",
+      "ERROR_MSG": "Algo deu errado, por favor, tente novamente",
+      "ERROR_BTN": "Tente novamente",
+      "PLACEHOLDER": "Filtrar",
+      "NOT_FOUND": "Usuário não encontrado",
+      "HEADING": "ATRIBUIR A"
     },
-    "CREATOR_INFO": "Created by",
-    "EDITOR_INFO": "Edited by"
+    "CREATOR_INFO": "Criado por",
+    "EDITOR_INFO": "Editado por"
   },
   "MIND_MAP": {
     "HOVER_TIP": {
-      "ADD_TITLE": "Add a new title",
-      "SAVE": "Save mind map"
+      "ADD_TITLE": "Adicionar um novo título",
+      "SAVE": "Salvar mapa mental"
     },
-    "TAG": "Add a tag to the mind map",
+    "TAG": "Adicionar uma tag ao mapa mental",
     "DELETE": {
       "MESSAGE": {
-        "SUCCES": "Reset successful",
-        "ERROR": "Failed to save changes."
+        "SUCCES": "Reset bem-sucedido",
+        "ERROR": "Falha ao salvar alterações."
       },
-      "HOVER": "Delete all tiles",
+      "HOVER": "Excluir todos os títulos",
       "DIALOG": {
-        "TITLE": "Delete all tiles",
-        "DESC": "Reset the mind map layout to its initial state",
-        "WARNING": "Restoring the initial state will delete all current tiles and connections. Click 'Reset State' to remove all tiles and connections.",
-        "BTN_RESET": "Reset State",
-        "BTN_PENDING": "Resetting"
+        "TITLE": "Excluir todos os títulos",
+        "DESC": "Redefinir o layout do mapa mental para seu estado inicial",
+        "WARNING": "Restaurar o estado inicial excluirá todos os títulos e conexões atuais. Clique em 'Redefinir Estado' para remover todos os títulos e conexões.",
+        "BTN_RESET": "Redefinir Estado",
+        "BTN_PENDING": "Redefinindo"
       }
     },
     "EDGE_OPTIONS": {
-      "TITLE": "Connection Settings",
-      "DESC": "Customize how your connections look. Add text, set connection type, change color, and choose whether to animate them!",
+      "TITLE": "Configurações de Conexão",
+      "DESC": "Personalize como suas conexões se parecem. Adicione texto, defina o tipo de conexão, mude a cor e escolha se deseja animá-las!",
       "FORM": {
         "LABEL": {
-          "LABEL": "Label",
-          "DESC": "Adding text will display a label. Leave the field empty and save changes to remove it.",
-          "PLACEHOLDER": "Add label"
+          "LABEL": "Rótulo",
+          "DESC": "Adicionar texto exibirá um rótulo. Deixe o campo vazio e salve as alterações para removê-lo.",
+          "PLACEHOLDER": "Adicionar rótulo"
         },
         "TYPE": {
-          "LABEL": "Connection Type",
-          "DEFAULT": "Default",
-          "STRAIGHT": "Straight",
-          "STEP_SHARP": "Step",
-          "STEP_ROUNDED": "Step (rounded corners)",
-          "DESC": "Choose how the connection behaves"
+          "LABEL": "Tipo de Conexão",
+          "DEFAULT": "Padrão",
+          "STRAIGHT": "Reto",
+          "STEP_SHARP": "Degrau",
+          "STEP_ROUNDED": "Degrau (cantos arredondados)",
+          "DESC": "Escolha como a conexão se comporta"
         },
         "COLOR": {
-          "LABEL": "Color",
-          "DESC": "Color choice affects only the label"
+          "LABEL": "Cor",
+          "DESC": "A escolha da cor afeta somente o rótulo"
         },
         "ANIMATED": {
-          "LABEL": "Animate Connection"
+          "LABEL": "Animar Conexão"
         },
-        "BTN_SAVE": "Save",
-        "BTN_DELETE_EDGE": "Delete Connection"
+        "BTN_SAVE": "Salvar",
+        "BTN_DELETE_EDGE": "Excluir Conexão"
       }
     },
     "NODE": {
-      "EDIT": "Edit",
-      "COLOR": "Color",
-      "DELETE": "Delete",
-      "SAVE": "Save Changes",
-      "CANCEL": "Cancel",
-      "PLACEHOLDER": "Add a new description"
+      "EDIT": "Editar",
+      "COLOR": "Cor",
+      "DELETE": "Excluir",
+      "SAVE": "Salvar Alterações",
+      "CANCEL": "Cancelar",
+      "PLACEHOLDER": "Adicionar uma nova descrição"
     },
     "EDIT_TITLE_AND_EMOJI": {
-      "ERROR": "Failed to save changes.",
-      "HOVER": "Edit information",
-      "TITLE": "Edit information",
-      "DESC": "Change the name of your mind map and set its icon",
-      "PLACEHOLDER": "Untitled Mind Map",
-      "SAVE": "Save",
-      "CANCEL": "Cancel"
+      "ERROR": "Falha ao salvar alterações.",
+      "HOVER": "Editar informações",
+      "TITLE": "Editar informações",
+      "DESC": "Altere o nome do seu mapa mental e defina seu ícone",
+      "PLACEHOLDER": "Mapa Mental Sem Título",
+      "SAVE": "Salvar",
+      "CANCEL": "Cancelar"
     },
     "PREVIEW": {
-      "INFO": "This is the preview page. You can navigate the map space, but to edit it, go to the editing page (if you have the necessary permissions).",
-      "NO_TITLE": "Untitled mind map",
-      "DELETE": "Delete",
-      "EDIT": "Edit",
-      "ADD_TO_FAV": "Add to Favorites",
-      "REMOVE_FROM_FAV": "Remove from Favorites",
+      "INFO": "Esta é a página de visualização. Você pode navegar pelo espaço do mapa, mas para editá-lo, vá para a página de edição (se tiver as permissões necessárias).",
+      "NO_TITLE": "Mapa mental sem título",
+      "DELETE": "Excluir",
+      "EDIT": "Editar",
+      "ADD_TO_FAV": "Adicionar aos Favoritos",
+      "REMOVE_FROM_FAV": "Remover dos Favoritos",
       "DIALOG": {
-        "TITLE": "Delete mind map",
-        "DESC": "Are you sure you want to delete the mind map? You will lose all the data and associated actions. Deletion is irreversible.",
-        "BTN_DELETE": "Delete",
-        "BTN_PENDING": "Deleting"
+        "TITLE": "Excluir mapa mental",
+        "DESC": "Você tem certeza de que deseja excluir o mapa mental? Você perderá todos os dados e ações associadas. A exclusão não pode ser desfeita.",
+        "BTN_DELETE": "Excluir",
+        "BTN_PENDING": "Excluindo"
       },
-      "CREATOR_INFO": "Created by",
-      "EDITOR_INFO": "Edited by"
+      "CREATOR_INFO": "Criado por",
+      "EDITOR_INFO": "Editado por"
     },
     "ASSIGNMENT": {
-      "TRIGGER": "Assign",
-      "ERROR_MSG": "Something went wrong, please try again",
-      "ERROR_BTN": "Try again",
-      "PLACEHOLDER": "Filter",
-      "NOT_FOUND": "User not found",
-      "HEADING": "ASSIGN TO"
+      "TRIGGER": "Atribuir",
+      "ERROR_MSG": "Algo deu errado, por favor, tente novamente",
+      "ERROR_BTN": "Tente novamente",
+      "PLACEHOLDER": "Filtrar",
+      "NOT_FOUND": "Usuário não encontrado",
+      "HEADING": "ATRIBUIR A"
     }
   },
-  "ACCOUNT":{
-    "Configuration":"Ops.. something went wrong"
+  "ACCOUNT": {
+    "Configuration": "Ops.. algo deu errado"
   },
   "SETTINGS": {
     "ACCOUNT": {
-      "TITLE": "Account",
-      "DESC": "Manage your Super Productive account. All changes to your account will be applied to all workspaces.",
-      "IMAGE": "PROFILE IMAGE",
-      "USERNAME": "USERNAME",
-      "FIRST_NAME": "FIRST NAME (OPTIONAL)",
-      "SURNAME": "SURNAME (OPTIONAL)",
-      "USERNAME_PLACEHOLDER": "Username",
-      "FIRST_NAME_PLACEHOLDER": "First name",
-      "SURNAME_PLACEHOLDER": "Surname",
-      "LANG": "LANGUAGE",
-      "SEARCH_LANGUAGE": "Search language...",
-      "SELECT_LANGUAGE": "Select language",
-      "UPDATE_BTN": "Update",
-      "DELETE_TITLE": "Delete account",
-      "DELETE_DESC": "Once the account and data are deleted, there is no way to recover them.",
-      "DELETE_LABEL": "DELETE MY ACCOUNT AND DATA",
-      "DELETE_PLACEHOLDER": "Confirm your email",
-      "DELETE_BTN": "Delete",
+      "TITLE": "Conta",
+      "DESC": "Gerencie sua conta do Super Productive. Todas as alterações na sua conta serão aplicadas a todos os workspaces.",
+      "IMAGE": "IMAGEM DE PERFIL",
+      "USERNAME": "NOME DE USUÁRIO",
+      "FIRST_NAME": "NOME (OPCIONAL)",
+      "SURNAME": "SOBRENOME (OPCIONAL)",
+      "USERNAME_PLACEHOLDER": "Nome de usuário",
+      "FIRST_NAME_PLACEHOLDER": "Nome",
+      "SURNAME_PLACEHOLDER": "Sobrenome",
+      "LANG": "IDIOMA",
+      "SEARCH_LANGUAGE": "Pesquisar idioma...",
+      "SELECT_LANGUAGE": "Selecionar idioma",
+      "UPDATE_BTN": "Atualizar",
+      "DELETE_TITLE": "Excluir conta",
+      "DELETE_DESC": "Uma vez que a conta e os dados sejam excluídos, não há como recuperá-los.",
+      "DELETE_LABEL": "EXCLUIR MINHA CONTA E DADOS",
+      "DELETE_PLACEHOLDER": "Confirme seu email",
+      "DELETE_BTN": "Excluir",
       "DIALOG": {
-        "TITLE": "Delete account",
-        "DESC": "You will loose access to all your workspaces and projects",
-        "WARNING": "Account deletion is permanent and cannot be undone,click 'Delete my account' to delete your account.",
-        "BUTTON": "DELETE MY ACCOUNT"
+        "TITLE": "Excluir conta",
+        "DESC": "Você perderá acesso a todos os seus workspaces e projetos",
+        "WARNING": "A exclusão da conta é permanente e não pode ser desfeita, clique em 'Excluir minha conta' para excluir sua conta.",
+        "BUTTON": "EXCLUIR MINHA CONTA"
       }
     },
     "THEME": {
-      "ADD_TASK": "Add task",
-      "ADD_TASK_PENDING": "Creating task"
+      "ADD_TASK": "Adicionar tarefa",
+      "ADD_TASK_PENDING": "Criando tarefa"
     },
     "SECURITY": {
-      "TITLE": "Security",
-      "DESC": "You can change your password here. Remember that it should contain atleast 6 characters, at least one upper and lower case letter and at least one number",
+      "TITLE": "Segurança",
+      "DESC": "Você pode alterar sua senha aqui. Lembre-se de que deve conter pelo menos 6 caracteres, pelo menos uma letra maiúscula e minúscula e pelo menos um número",
       "WARNING": {
-        "FIRST": "The password can be changed",
-        "SECOND": "only for accounts created through the form on the site",
-        "THIRD": "If you have created an account via Google or Github button, ",
-        "FOURTH": "it is not possible to change the password",
-        "FIFTH": "due to another method of account authorization."
+        "FIRST": "A senha pode ser alterada",
+        "SECOND": "apenas para contas criadas através do formulário no site",
+        "THIRD": "Se você criou uma conta via botão do Google ou Github, ",
+        "FOURTH": "não é possível alterar a senha",
+        "FIFTH": "devido a outro método de autorização de conta."
       },
       "FORM": {
         "CURRENT": {
-          "LABEL": "CURRENT PASSWORD",
-          "PLACEHOLDER": "Current password"
+          "LABEL": "SENHA ATUAL",
+          "PLACEHOLDER": "Senha atual"
         },
         "NEW": {
-          "LABEL": "NEW PASSWORD",
-          "PLACEHOLDER": "New password"
+          "LABEL": "NOVA SENHA",
+          "PLACEHOLDER": "Nova senha"
         },
         "REPEAT": {
-          "LABEL": "CONFIRM PASSWORD",
-          "PLACEHOLDER": "Confirm password"
+          "LABEL": "CONFIRMAR SENHA",
+          "PLACEHOLDER": "Confirmar senha"
         },
-        "BTN": "Change password",
-        "BTN_PENDING": "Changing password"
+        "BTN": "Alterar senha",
+        "BTN_PENDING": "Alterando senha"
       }
     }
   },
   "POMODORO": {
     "SETTINGS": {
       "CARD": {
-        "TITLE": "Pomodoro Settings",
-        "DESC": "Manage your settings. Personalize your Pomodoro as you wish. You can change the number of rounds, work and break durations, as well as customize notification sounds."
+        "TITLE": "Configurações do Pomodoro",
+        "DESC": "Gerencie suas configurações. Personalize seu Pomodoro como desejar. Você pode alterar o número de rodadas, durações do trabalho e intervalos, além de personalizar os sons de notificação."
       },
       "FORM": {
-        "TIMER": "Timer",
-        "SOUND": "Sound",
+        "TIMER": "Temporizador",
+        "SOUND": "Som",
         "WORK": {
-          "LABEL": "Work duration: {value} minutes",
-          "DESC": "Set the duration of your work"
+          "LABEL": "Duração do trabalho: {value} minutos",
+          "DESC": "Defina a duração do seu trabalho"
         },
         "SHORT_BREAK": {
-          "LABEL": "Short break duration: {value} minutes",
-          "DESC": "Set the duration of your short break"
+          "LABEL": "Duração do intervalo curto: {value} minutos",
+          "DESC": "Defina a duração do seu intervalo curto"
         },
         "LONG_BREAK": {
-          "LABEL": "Long break duration: {value} minutes",
-          "DESC": "Set the duration of your long break"
+          "LABEL": "Duração do intervalo longo: {value} minutos",
+          "DESC": "Defina a duração do seu intervalo longo"
         },
         "ROUNDS": {
-          "LABEL": "Number of rounds: {value}",
-          "DESC": "Set how many rounds complete a full session (one round ends after the long break time elapses)"
+          "LABEL": "Número de rodadas: {value}",
+          "DESC": "Defina quantas rodadas completam uma sessão completa (uma rodada termina após o tempo do intervalo longo expirar)"
         },
         "LONG_BREAKS_INTERVAL": {
-          "LABEL": "Interval between long breaks: {value}",
-          "DESC": "The larger the value, the longer one round lasts (greater interval between long breaks)"
+          "LABEL": "Intervalo entre longos intervalos: {value}",
+          "DESC": "Quanto maior o valor, mais longo um intervalo dura (maior intervalo entre longos intervalos)"
         },
         "ALARM": {
-          "LABEL": "Notification sound",
-          "DESC": "Choose the sound to play when the time is up",
-          "ANALOG": "Analog",
-          "BELL": "Bell",
-          "BIRD": "Bird",
-          "CHURCH_BELL": "Church Bell",
+          "LABEL": "Som de notificação",
+          "DESC": "Escolha o som a ser reproduzido quando o tempo acabar",
+          "ANALOG": "Analógico",
+          "BELL": "Sino",
+          "BIRD": "Pássaro",
+          "CHURCH_BELL": "Sino da Igreja",
           "DIGITAL": "Digital",
-          "FANCY": "Fancy"
+          "FANCY": "Elegante"
         },
         "VOLUME": {
-          "LABEL": "Notification sound volume: {value}%",
-          "DESC": "To mute the notification, set the volume to 0%"
+          "LABEL": "Volume do som de notificação: {value}%",
+          "DESC": "Para silenciar a notificação, defina o volume em 0%"
         },
         "RESET": {
-          "BTN": "Reset Settings",
-          "BTN_PENDING": "Resetting"
+          "BTN": "Redefinir Configurações",
+          "BTN_PENDING": "Redefinindo"
         },
         "SAVE": {
-          "BTN": "Save Changes",
-          "BTN_PENDING": "Saving"
+          "BTN": "Salvar Alterações",
+          "BTN_PENDING": "Salvando"
         }
       }
     },
     "TIMER": {
-      "END_TEXT": "Good job!",
-      "FOCUS": "Time to focus",
-      "BREAK": "Break time!",
+      "END_TEXT": "Bom trabalho!",
+      "FOCUS": "Hora de focar",
+      "BREAK": "Hora do intervalo!",
       "ROUNDS": {
-        "FIRST": "Round",
-        "SECOND": "of"
+        "FIRST": "Rodada",
+        "SECOND": "de"
       },
-      "NEW": "Start a new session",
-      "START": "Start",
-      "STOP": "Stop"
+      "NEW": "Iniciar uma nova sessão",
+      "START": "Iniciar",
+      "STOP": "Parar"
     }
   },
   "STARRED": {
-    "TITLE": "Your starred items",
-    "DESC": "Here you will find all your saved mind maps and tasks.",
-    "ERROR": "An error occurred while retrieving your data. Please try again.",
+    "TITLE": "Seus itens favoritos",
+    "DESC": "Aqui você encontrará todos os seus mapas mentais e tarefas salvas.",
+    "ERROR": "Ocorreu um erro ao recuperar seus dados. Por favor, tente novamente.",
     "ITEM_SENTENCE": {
-      "MIND_MAP": "Mind map edited",
-      "TASK": "Task edited",
-      "BY": "by",
-      "IN": " - in"
+      "MIND_MAP": "Mapa mental editado",
+      "TASK": "Tarefa editada",
+      "BY": "por",
+      "IN": " - em"
     },
     "DEFAULT_NAME": {
-      "MIND_MAP": "Untitled Mind Map",
-      "TASK": "Untitled Task"
+      "MIND_MAP": "Mapa Mental Sem Título",
+      "TASK": "Tarefa Sem Título"
     },
-    "UNSTAR": "Remove star",
+    "UNSTAR": "Remover estrela",
     "SORT": {
-      "ASC": "Latest",
-      "DESC": "Oldest",
-      "INFO": "Sorting by edit date"
+      "ASC": "Mais recentes",
+      "DESC": "Mais antigos",
+      "INFO": "Classificando pela data de edição"
     },
     "NO_ITEMS": {
-      "TITLE": "You have no projects marked with a star",
-      "DESC": "Any task or mind map you star will appear here."
+      "TITLE": "Você não tem projetos marcados com estrela",
+      "DESC": "Qualquer tarefa ou mapa mental que você marcar com estrela aparecerá aqui."
     }
   },
   "ASSIGNED_TO_ME": {
-    "TITLE": "Assigned to Me",
-    "DESC": "Here you will find all your saved mind maps and tasks",
-    "NO_ASSIGMENT": "You haven't been assigned anywhere yet",
-    "NOT_FOUND": "We couldn't find any tasks or mind maps that met the criteria",
+    "TITLE": "Atribuído a Mim",
+    "DESC": "Aqui você encontrará todos os seus mapas mentais e tarefas salvas",
+    "NO_ASSIGMENT": "Você ainda não foi atribuído a nenhum lugar",
+    "NOT_FOUND": "Não conseguimos encontrar nenhuma tarefa ou mapa mental que atendesse aos critérios",
     "DEFAULT_NAME": {
-      "MIND_MAP": "Untitled Mind Map",
-      "TASK": "Untitled Task"
+      "MIND_MAP": "Mapa Mental Sem Título",
+      "TASK": "Tarefa Sem Título"
     }
   },
   "CALENDAR": {
     "DAYS_OF_WEEK": {
-      "MON": "MON",
-      "TUE": "TUE",
-      "WED": "WED",
-      "THU": "THU",
-      "FRI": "FRI",
-      "SAT": "SAT",
-      "SUN": "SUN"
+      "MON": "SEG",
+      "TUE": "TER",
+      "WED": "QUA",
+      "THU": "QUI",
+      "FRI": "SEX",
+      "SAT": "SAB",
+      "SUN": "DOM"
     },
     "HEADER": {
-      "PREV": "Previous",
-      "TODAY": "Today",
-      "NEXT": "Next"
+      "PREV": "Anterior",
+      "TODAY": "Hoje",
+      "NEXT": "Próximo"
     },
-    "TASK": "Untitled Task",
+    "TASK": "Tarefa Sem Título",
     "SHOW_MORE": {
-      "MORE": "More",
-      "TITLE": "All tasks",
-      "DESC": "All tasks from workspaces you belong to"
+      "MORE": "Mais",
+      "TITLE": "Todas as tarefas",
+      "DESC": "Todas as tarefas dos workspaces aos quais você pertence"
     }
   },
   "TASK_SHORTCUT": {
-    "TITLE": "Create Task",
-    "HINT": "Quick add",
-    "ADDED_TASK": "Task added to project! View Task",
-    "CHOOSE_WORKSPACE": "Choose Workspace",
-    "DESC": "Add a task to the selected workspace you belong to and have the required permissions in",
-    "BTN_ADD": "Add to Workspace",
-    "BTN_NO_WORKSPACES": "I understand",
-    "BTN_PENDING": "Adding. Please wait",
-    "DUE_DATE": "Due Date",
+    "TITLE": "Criar Tarefa",
+    "HINT": "Adição rápida",
+    "ADDED_TASK": "Tarefa adicionada ao projeto! Ver Tarefa",
+    "CHOOSE_WORKSPACE": "Escolher Workspace",
+    "DESC": "Adicionar uma tarefa ao workspace selecionado ao qual você pertence e tem as permissões necessárias",
+    "BTN_ADD": "Adicionar ao Workspace",
+    "BTN_NO_WORKSPACES": "Eu entendo",
+    "BTN_PENDING": "Adicionando. Por favor, aguarde",
+    "DUE_DATE": "Data de Vencimento",
     "MAIN_TAB": {
-      "PLACEHOLDER": "Add title",
+      "PLACEHOLDER": "Adicionar título",
       "WORKSPACE": "Workspace",
-      "WARNING": "You don't have any workspaces yet where you can add a task. Create a new workspace or join an existing workspace with at least “Editor” level permission."
+      "WARNING": "Você ainda não tem workspaces onde pode adicionar uma tarefa. Crie um novo workspace ou junte-se a um workspace existente com pelo menos permissão de 'Editor'."
     }
   },
   "PERMISSION_INDICATOR": {
-    "TITLE": "Your current role is",
-    "DESC": "Your permissions in workspace {workspace} are currently",
+    "TITLE": "Seu papel atual é",
+    "DESC": "Suas permissões no workspace {workspace} são atualmente",
     "ROLES": {
-      "OWNER": "Owner",
+      "OWNER": "Proprietário",
       "ADMIN": "Admin",
       "CAN_EDIT": "Editor",
-      "READ_ONLY": "Viewer"
+      "READ_ONLY": "Visualizador"
     },
-    "HINT": "Permission in {workspace} is",
+    "HINT": "Permissão em {workspace} é",
     "ROLES_DESC": {
-      "OWNER": "As the Owner, you have all possible rights. You can manage content, other users, and customize workspace settings. However, as the Owner, you cannot leave this workspace; the only option is to completely delete it in the settings.",
-      "ADMIN": "As an Admin, you have all possible rights, including changing workspace settings and managing other users.",
-      "CAN_EDIT": "As an Editor, you have full access to the workspace, with rights to edit and delete content within the workspace. However, you do not have access to workspace settings.",
-      "READ_ONLY": "As a Viewer, you have full access to the workspace but do not have permissions to edit the content within it. You also do not have access to workspace settings."
+      "OWNER": "Como proprietário, você tem todos os direitos possíveis. Você pode gerenciar conteúdo, outros usuários e personalizar as configurações do workspace. No entanto, como proprietário, você não pode sair deste workspace; a única opção é excluí-lo completamente nas configurações.",
+      "ADMIN": "Como admin, você tem todos os direitos possíveis, incluindo alterar as configurações do workspace e gerenciar outros usuários.",
+      "CAN_EDIT": "Como editor, você tem acesso total ao workspace, com direitos de editar e excluir conteúdo dentro do workspace. No entanto, você não tem acesso às configurações do workspace.",
+      "READ_ONLY": "Como visualizador, você tem acesso total ao workspace, mas não tem permissões para editar o conteúdo dentro dele. Você também não tem acesso às configurações do workspace."
     },
-    "BTN": "Understood"
+    "BTN": "Entendi"
   },
   "USERS_STATUS_LIST": {
     "ROLES": {
-      "OWNER": "Owner",
+      "OWNER": "Proprietário",
       "ADMIN": "Admin",
       "CAN_EDIT": "Editor",
-      "READ_ONLY": "Viewer",
-      "UNAVAILABLE": "UNAVAILABLE"
+      "READ_ONLY": "Visualizador",
+      "UNAVAILABLE": "INDISPONÍVEL"
     },
     "ERROR": {
-      "MG": "Failed to retrieve workspace members information",
-      "BTN": "Try again"
+      "MG": "Falha ao recuperar informações dos membros do workspace",
+      "BTN": "Tente novamente"
     }
   },
   "NOTIFICATIONS": {
-    "TITLE": "Notifications",
-    "MARK_AS_READ": "Mark all as read",
-    "NO_NOTIFICATIONS": "You don't have any notifications yet",
-    "ERROR": "An error occurred while fetching notifications",
+    "TITLE": "Notificações",
+    "MARK_AS_READ": "Marcar tudo como lido",
+    "NO_NOTIFICATIONS": "Você ainda não tem notificações",
+    "ERROR": "Um erro ocorreu ao buscar notificações",
     "NOTIFY_ITEM": {
       "ROLES": {
         "ADMIN": "Admin",
         "CAN_EDIT": "Editor",
-        "READ_ONLY": "Viewer"
+        "READ_ONLY": "Visualizador"
       },
-      "NEW_USER_IN_WORKSPACE_TEXT": "has joined the workspace {name}",
-      "USER_LEFT_WORKSPACE_TEXT": "has left the workspace {name}",
-      "NEW_TASK_TEXT": "has added a new task in the workspace {name}",
-      "NEW_MIND_MAP_TEXT": "has added a new mind map in the workspace {name}",
-      "NEW_ROLE_TEXT": "You have been granted {role} level permissions in the workspace {name}",
-      "NEW_ASSIGMENT_TASK_TEXT": "You have been assigned a task in the workspace {name}",
-      "NEW_ASSIGMENT_MIND_MAP_TEXT": "You have been assigned to a mind map in the workspace {name}"
+      "NEW_USER_IN_WORKSPACE_TEXT": "entrou no workspace {name}",
+      "USER_LEFT_WORKSPACE_TEXT": "saiu do workspace {name}",
+      "NEW_TASK_TEXT": "adicionou uma nova tarefa no workspace {name}",
+      "NEW_MIND_MAP_TEXT": "adicionou um novo mapa mental no workspace {name}",
+      "NEW_ROLE_TEXT": "Você recebeu permissões de nível {role} no workspace {name}",
+      "NEW_ASSIGMENT_TASK_TEXT": "Você foi atribuído a uma tarefa no workspace {name}",
+      "NEW_ASSIGMENT_MIND_MAP_TEXT": "Você foi atribuído a um mapa mental no workspace {name}"
     }
   },
   "HOME_PAGE": {
-    "NO_DATA": "No activity found. Join a workspace or create your own. Then, all tasks and mind maps that are edited will be visible here in order from the latest.",
-    "ERROR": "An error occurred while retrieving the latest activity."
+    "NO_DATA": "Nenhuma atividade encontrada. Junte-se a um workspace ou crie o seu próprio. Depois, todas as tarefas e mapas mentais que forem editados estarão visíveis aqui em ordem do mais recente.",
+    "ERROR": "Ocorreu um erro ao recuperar a atividade mais recente."
   },
   "WORKSPACE_MAIN_PAGE": {
     "FILTER": {
-      "FILTER_BTN": "Filter",
-      "CLEAR_BTN": "Clear"
+      "FILTER_BTN": "Filtrar",
+      "CLEAR_BTN": "Limpar"
     },
     "COMMAND": {
-      "SEARCH": "Search",
-      "NO_RESULTS_FOUND": "No results found",
-      "ASSIGNED_TO": "ASSIGNED TO",
+      "SEARCH": "Pesquisar",
+      "NO_RESULTS_FOUND": "Nenhum resultado encontrado",
+      "ASSIGNED_TO": "ATRIBUÍDO A",
       "TAG": "TAG",
-      "ASSIGNED_TO_ME": "Assigned to me"
+      "ASSIGNED_TO_ME": "Atribuído a mim"
     },
     "RECENT_ACTIVITY": {
-      "NO_FILTERED_DATA": "No tasks and mind maps to display for the given criteria",
-      "ERROR": "Failed to fetch recent workspace activity data",
-      "NO_DATA": "No activity found. Create your first tasks and mind maps now!"
+      "NO_FILTERED_DATA": "Nenhuma tarefa e mapa mental para exibir para os critérios dados",
+      "ERROR": "Falha ao buscar dados de atividade recente do workspace",
+      "NO_DATA": "Nenhuma atividade encontrada. Crie suas primeiras tarefas e mapas mentais agora!"
     },
     "SHORTCUT_CONTAINER": {
-      "GROUP_CHAT": "Group Chat",
-      "PRIVATE_CHAT": "Private Chat",
-      "NEW_TASK": "New Task",
-      "NEW_MIND_MAP": "New Mind Map"
+      "GROUP_CHAT": "Chat em Grupo",
+      "PRIVATE_CHAT": "Chat Privado",
+      "NEW_TASK": "Nova Tarefa",
+      "NEW_MIND_MAP": "Novo Mapa Mental"
     }
   },
   "CHAT": {
     "NO_MESSAGES": {
-      "FIRST": "We couldn't find any messages in this chat.",
-      "SECOND": "Send the first message!"
+      "FIRST": "Não conseguimos encontrar mensagens neste chat.",
+      "SECOND": "Envie a primeira mensagem!"
     },
-    "HEADER": { "TITLE": "{workspaceName} chat" },
+    "HEADER": { "TITLE": "Chat {workspaceName}" },
     "DELETE_MESSAGE": {
-      "TITLE": "Delete Message",
-      "DESC": "This operation is irreversible and will permanently delete the message.",
-      "BTN_DELETE": "Delete",
-      "BTN_CANCEL": "Cancel"
+      "TITLE": "Excluir Mensagem",
+      "DESC": "Esta operação é irreversível e excluirá permanentemente a mensagem.",
+      "BTN_DELETE": "Excluir",
+      "BTN_CANCEL": "Cancelar"
     },
     "EDIT": {
-      "BADGE": "(edited)",
+      "BADGE": "(editado)",
       "TEXT": {
-        "FIRST": "Press",
-        "SECOND": ", to cancel • Press",
-        "THIRD": ", to save"
+        "FIRST": "Pressione",
+        "SECOND": ", para cancelar • Pressione",
+        "THIRD": ", para salvar"
       }
     },
     "OPTIONS": {
-      "EDIT": "Edit Message",
-      "DELETE": "Delete Message"
+      "EDIT": "Editar Mensagem",
+      "DELETE": "Excluir Mensagem"
     },
-    "LOAD_MORE": "Load More",
-    "NOTIFICATIONS": "{notifications} new messages",
+    "LOAD_MORE": "Carregar Mais",
+    "NOTIFICATIONS": "{notifications} novas mensagens",
     "NEW_MESSAGE": {
-      "PLACEHOLDER": "New message",
-      "DELETE_ATACHMENT": "Delete attachment",
-      "ATACHMENT_DEAFULT_ERROR": "Failed to add attachments.",
-      "ATACHMENT_TO_MANY_ERROR": "Failed to add attachments. The maximum number of files you can send at once is 5 images and 5 PDFs.",
-      "ATACHMENT_TO_BIG_ERROR": "Failed to add attachments. One of the files is too large.",
-      "ATACHMENT_WRONG_FILE_ERROR": "Failed to add attachments. One of the files has an unsupported format."
+      "PLACEHOLDER": "Nova mensagem",
+      "DELETE_ATACHMENT": "Excluir anexo",
+      "ATACHMENT_DEAFULT_ERROR": "Falha ao adicionar anexos.",
+      "ATACHMENT_TO_MANY_ERROR": "Falha ao adicionar anexos. O número máximo de arquivos que você pode enviar de uma vez é 5 imagens e 5 PDFs.",
+      "ATACHMENT_TO_BIG_ERROR": "Falha ao adicionar anexos. Um dos arquivos é muito grande.",
+      "ATACHMENT_WRONG_FILE_ERROR": "Falha ao adicionar anexos. Um dos arquivos tem um formato não suportado."
     }
   },
   "CLIENT_ERROR": {
-    "TITLE": "Oh no... Something went wrong",
-    "BTN": "Try again"
+    "TITLE": "Oh não... Algo deu errado",
+    "BTN": "Tente novamente"
   },
   "ROUTES": {
-    "DASHBOARD": "Home",
-    "SETTINGS": "Settings",
-    "SECURITY": "Security",
-    "THEME": "Theme",
-    "TASKS": "Tasks",
-    "UNTITLED": "Untitled",
+    "DASHBOARD": "Início",
+    "SETTINGS": "Configurações",
+    "SECURITY": "Segurança",
+    "THEME": "Tema",
+    "TASKS": "Tarefas",
+    "UNTITLED": "Sem Título",
     "POMODORO": "Pomodoro",
-    "STARRED": "Starred",
-    "ASSIGNED-TO-ME": "Assigned to me"
+    "STARRED": "Favoritos",
+    "ASSIGNED-TO-ME": "Atribuído a mim"
   },
   "EDIT_WORKSPACE": {
-    "TITLE": "Edit workspace",
-    "DESC": "Here you can change the name of the workspace and its icon.",
+    "TITLE": "Editar workspace",
+    "DESC": "Aqui você pode alterar o nome do workspace e seu ícone.",
     "PICTURE": {
-      "LABEL": "WORKSPACE ICON",
-      "TITLE": "Change icon",
-      "BTN": "Choose image"
+      "LABEL": "ÍCONE DO WORKSPACE",
+      "TITLE": "Alterar ícone",
+      "BTN": "Escolher imagem"
     },
     "DATA": {
       "INPUTS": {
-        "NAME": "WORKSPACE NAME",
-        "COLOR": "WORKSPACE COLOR ICON"
+        "NAME": "NOME DO WORKSPACE",
+        "COLOR": "COR DO ÍCONE DO WORKSPACE"
       },
       "PLACEHOLDERS": {
-        "NAME": "eg. openstudio"
+        "NAME": "ex. openstudio"
       },
-      "INFO": "Changing the color only affects the appearance of the workspace icon only when no image has been added",
-      "BTN": "Update",
-      "BTN_PENDING": "Updating"
+      "INFO": "Alterar a cor afeta apenas a aparência do ícone do workspace somente quando nenhuma imagem tiver sido adicionada",
+      "BTN": "Atualizar",
+      "BTN_PENDING": "Ativando"
     },
     "DELETE": {
-      "TITLE": "Delete the workspace",
-      "DESC": "Once a workspace and the data belonging to it are deleted, there is no way to recover them.",
-      "LABEL": "CONFIRM WORKSPACE NAME",
-      "BTN": "Delete",
+      "TITLE": "Excluir o workspace",
+      "DESC": "Uma vez que um workspace e os dados pertencentes a ele sejam excluídos, não há como recuperá-los.",
+      "LABEL": "CONFIRMAR NOME DO WORKSPACE",
+      "BTN": "Excluir",
       "DIALOG": {
-        "TITLE": "Delete the workspace",
-        "DESC": "All data will be permanently deleted, and all users belonging to this workspace will lose access to it",
-        "WARNING": "Deletion of workspace is permanent and cannot be undone, click 'Delete workspace' to delete the workspace",
-        "BUTTON": "DELETE WORKSPACE",
-        "PENDING_BTN": "Deleting. Please wait"
+        "TITLE": "Excluir o workspace",
+        "DESC": "Todos os dados serão excluídos permanentemente, e todos os usuários pertencentes a este workspace perderão acesso a ele",
+        "WARNING": "A exclusão do workspace é permanente e não pode ser desfeita, clique em 'Excluir workspace' para excluir o workspace",
+        "BUTTON": "EXCLUIR WORKSPACE",
+        "PENDING_BTN": "Excluindo. Por favor, aguarde"
       }
     },
     "MEMBERS": {
-      "TITLE": "Members",
-      "DESC": "Here you can manage the members of the workspace. You can change their roles as well as remove them from the workspace.",
+      "TITLE": "Membros",
+      "DESC": "Aqui você pode gerenciar os membros do workspace. Você pode alterar suas funções, bem como removê-los do workspace.",
       "TABLE": {
-        "USERNAME": "USERNAME",
-        "PERMISSION_SMALL": "PERMISSIONS",
-        "PERMISSION_BIG": "WORKSPACE PERMISSIONS"
+        "USERNAME": "NOME DE USUÁRIO",
+        "PERMISSION_SMALL": "PERMISSÕES",
+        "PERMISSION_BIG": "PERMISSÕES DO WORKSPACE"
       },
       "OPTIONS": {
-        "REMOVE_BTN": "Remove",
+        "REMOVE_BTN": "Remover",
         "REMOVE": {
-          "TITLE": "Remove from workspace",
-          "NOTE": "You can invite this user to this workspace again at any time. To confirm click 'Remove form workspace'",
-          "BTN": "Remove from workspace",
-          "BTN_PENDING": "Removing"
+          "TITLE": "Remover do workspace",
+          "NOTE": "Você pode convidar este usuário para este workspace novamente a qualquer momento. Para confirmar, clique em 'Remover do workspace'",
+          "BTN": "Remover do workspace",
+          "BTN_PENDING": "Removendo"
         }
       }
     }
