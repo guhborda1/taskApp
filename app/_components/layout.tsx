@@ -66,8 +66,9 @@ import { DashboardSideBarInsetHeader } from './dashboardSideBarInsetHeader/dashb
 import { DasboardSidebarFooter } from './dasboardSidebarFooter/dasboardSidebarFooter'
 
 import React from "react"
-import { redirect, usePathname } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import { useSession } from "next-auth/react"
+import { useOrgApp } from "@/providers/OrgProvider"
 
 
 export interface userDataInterface {
@@ -80,6 +81,10 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     const paths = usePathname()
     const pathNames = paths.split('/').filter(path => path)
 
+    const router = useRouter();
+    console.log(session)
+    if (!session?.user)
+        router.push('/auth/')
     const data = {
         user: {
             name: session?.user.name,
@@ -187,6 +192,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             },
         ],
     }
+    const { currentOrganization } = useOrgApp()
     return (
 
         <SidebarProvider>
@@ -202,7 +208,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                                         <Command className="size-4" />
                                     </div>
                                     <div className="grid flex-1 text-left text-sm leading-tight">
-                                        <span className="truncate font-semibold">Acme Inc</span>
+                                        <span className="truncate font-semibold">{currentOrganization?.name || 'CRM Dashboard'}</span>
                                         <span className="truncate text-xs">Enterprise</span>
                                     </div>
                                 </a>

@@ -47,26 +47,26 @@ export function SignInForm() {
                 redirect: false,
             });
 
-            if (!account) throw new Error("Something went wrong");
+            console.log(account)
 
-            if (account.error) {
+            if (account?.error) {
                 toast({
-                    title: m(account.error),
+                    title: account.error,
                     variant: "destructive",
                 });
             } else {
                 toast({
                     title: m("SUCCESS.SIGN_IN"),
                 });
-                router.push("/onboarding");
-                router.refresh();
+
+
             }
         } catch (err) {
             let errMsg = m("ERRORS.DEFAULT");
             if (typeof err === "string") {
                 errMsg = err;
             } else if (err instanceof Error) {
-                errMsg = m(err.message);
+                errMsg = err.message;
             }
             toast({
                 title: errMsg,
@@ -78,11 +78,11 @@ export function SignInForm() {
     return (
         <>
             <div className="flex h-screen w-full items-center justify-center px-4">
-                <Card className="mx-auto max-w-sm">
+                <Card className="mx-auto md:!min-w-[380px] md:!max-w-[380px]">
                     <CardHeader>
-                        <CardTitle className="text-2xl">Login</CardTitle>
+                        <CardTitle className="text-2xl">{au('SIGN_IN.TITLE')}</CardTitle>
                         <CardDescription>
-                            Enter your email below to login to your account
+                            {au('SIGN_IN.DESC')}
                         </CardDescription>
                     </CardHeader>
                     <CardContent>
@@ -100,20 +100,20 @@ export function SignInForm() {
                                     </div>
                                     <div className="grid gap-2">
                                         <div className="flex items-center">
-                                            <Label htmlFor="password">Password</Label>
+                                            <Label htmlFor="password">{au("PASSWORD")}</Label>
                                             <Link
-                                                href="#"
+                                                href="/auth/forgot-password"
                                                 className="ml-auto inline-block text-sm underline"
                                             >
-                                                Forgot your password?
+                                                {au('SIGN_IN.FORGOT_PASSWORD')}
                                             </Link>
                                         </div>
-                                        <Input id="password" type="password" {...register("password", { required: true })} />
+                                        <Input id="password" type="password" placeholder={`${au("PASSWORD")}`} {...register("password", { required: true })} />
                                         {errors.password && <span>{m("ERRORS.WRONG_DATA")}</span>}
                                     </div>
                                     <div className="flex flex-col gap-2">
                                         <Button type="submit" className="w-full">
-                                            {au('SIGN_IN.TITLE')}
+                                            {isLoading ? m("PENDING.LOADING") : au('SIGN_IN.TITLE')}
                                         </Button>
 
                                     </div>
@@ -121,15 +121,17 @@ export function SignInForm() {
                             </form>
                             <Button className="w-full outline bg-transparent text-black hover:bg-primary-foreground dark:border-white dark:text-white border-solid border-sm" onClick={() => signIn('google')
                             }>
-                                Login with Google
+                                {au('SIGN_IN.PROVIDERS.GOOGLE')}
                             </Button>
                         </div>
 
                         <div className="mt-4 text-center text-sm">
-                            Don&apos;t have an account?{" "}
-                            <Link href="#" className="underline">
-                                Sign up
-                            </Link>
+                            {au("SIGN_IN.DONT_HAVE_ACCOUNT.FIRST")}
+                            <Button variant={'ghost'} asChild>
+                                <Link href={'/auth/signup'} className="underline" >
+                                    {au("SIGN_IN.DONT_HAVE_ACCOUNT.SECOND")}
+                                </Link>
+                            </Button>
                         </div>
                     </CardContent>
                 </Card>

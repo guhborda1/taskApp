@@ -30,6 +30,8 @@
         "TITLE": "Sign up",
         "DESC": "Create your account",
         "SUBMIT_BTN": "Sign up",
+        "DIFFERENT_PASSWORDS":"The provided password don't match",
+        "CONFIRM_PASSWORD":"Confirm Password",
         "FORGOT_PASSWORD": "Forgot password?",
         "HAVE_ACCOUNT": {
           "FIRST": "Already have an account?",
@@ -124,7 +126,8 @@
     "MESSAGES": {
       "ERRORS": {
         "DEFAULT": "Oh no..Something went wrong. Please try again",
-        "TAKEN_USERNAME": "This username is already taken",
+        "FIELD_REQUIRED":"This field is required",
+        "USER_ALREADY_EXIST": "This username is already taken",
         "TAKEN_EMAIL": "This email is already in use...",
         "DB_ERROR": "We are currently having problems. Please try again later",
         "WRONG_DATA": "The data you provided is incorrect. Please provide the correct ones.",

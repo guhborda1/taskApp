@@ -30,6 +30,8 @@
       "TITLE": "Cadastrar-se",
       "DESC": "Crie sua conta",
       "SUBMIT_BTN": "Cadastrar-se",
+      "DIFFERENT_PASSWORDS":"A senha fornecida não corresponde",
+      "CONFIRM_PASSWORD":"Confirme sua senha",
       "FORGOT_PASSWORD": "Esqueceu a senha?",
       "HAVE_ACCOUNT": {
         "FIRST": "Já tem uma conta?",
@@ -124,7 +126,9 @@
   "MESSAGES": {
     "ERRORS": {
       "DEFAULT": "Oh não.. Algo deu errado. Por favor, tente novamente",
-      "TAKEN_USERNAME": "Este nome de usuário já está em uso",
+      "TAKEN_USERNAME": "",
+      "USER_ALREADY_EXIST": "Usuário já existe",
+      "FIELD_REQUIRED":"Campo obrigatório",
       "TAKEN_EMAIL": "Este email já está em uso...",
       "DB_ERROR": "Estamos tendo problemas atualmente. Por favor, tente novamente mais tarde",
       "WRONG_DATA": "Os dados fornecidos estão incorretos. Por favor, forneça os corretos.",

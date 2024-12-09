@@ -1,5 +1,5 @@
 import type { NextAuthConfig } from "next-auth";
-import Credentials from "next-auth/providers/credentials";
+import CredentialsProvider from "next-auth/providers/credentials";
 import Google from "next-auth/providers/google";
 import { createStripeCustomer } from "./services/stripe";
 import { db } from "./lib/prisma";
@@ -23,45 +23,53 @@ interface UserLogin {
 
 import bcrypt from 'bcryptjs';
 import { signInSchema } from "./schema/signInSchema";
+import { createSession } from "./lib/sessions";
 
 // Hashear a senha
-const saltAndHashPassword = async (password: string) => {
+export const saltAndHashPassword = async (password: string) => {
     const salt = await bcrypt.genSalt(10);
     return await bcrypt.hash(password, salt);
 };
 
 // Comparar as senhas
-const comparePasswords = async (plainPassword: string, hashedPassword: string) => {
+export const comparePasswords = async (plainPassword: string, hashedPassword: string) => {
     return await bcrypt.compare(plainPassword, hashedPassword);
 };
 
-const getUserFromDb = async ({ email, password }: UserLogin): Promise<User | null> => {
-    const resolvedPassword = await password;
-
-    const userExist = await db.user.findUnique({
-        where: { email: email }
+export const getUserFromDb = async ({ email, password }: { email: string; password: string }) => {
+    console.log("Looking for user:", email);
+    const user = await db.user.findUnique({
+        where: { email },
     });
 
-    if (userExist) {
-        // Verifique se as senhas coincidem
-        if (userExist.password) {
-            const isPasswordCorrect = await comparePasswords(resolvedPassword, userExist.password);
-            if (isPasswordCorrect) {
-                return userExist;
-            }
-        }
+    if (!user) {
+        console.error("User not found with email:", email);
+        throw new Error('No account found with this email.');
     }
 
-    return null;
-};
+    if (!user.password) {
+        console.error("Password missing for user:", user);
+        throw new Error('Account may be linked with Google Provider. Please try logging in with Google.');
+    }
 
+    const isPasswordCorrect = await comparePasswords(password, user.password);
+    if (!isPasswordCorrect) {
+        console.error("Password mismatch for user:", user);
+        throw new Error('Incorrect password.');
+    }
+
+    console.log("User authenticated:", user);
+    return user;
+};
 export default {
+    debug: true,
     providers: [
         Google({
             clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENTID,
             clientSecret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET,
         }),
-        Credentials({
+        CredentialsProvider({
+            name: 'Credentials',
             credentials: {
                 email: { label: "Email", type: "text", placeholder: "Email" },
                 password: {
@@ -71,20 +79,24 @@ export default {
                 },
             },
             authorize: async (credentials) => {
-                const { email, password } = await signInSchema.parse(credentials);
+                try {
 
-                // Salta e hasheia a senha
-                const pwHash = await saltAndHashPassword(password);
 
-                // Verifica se o usuário existe
-                const user = await getUserFromDb({ email, password: pwHash });
+                    const { email, password } = await signInSchema.parse(credentials);
 
-                if (!user) {
-                    throw new Error("User not found.");
+                    // Salta e hasheia a senha
+                    // Verifica se o usuário existe
+                    const user = await getUserFromDb({ email, password });
+                    if (!user) {
+                        throw new Error("Error on Execute action");
+                    }
+                    // Retorne o usuário no formato esperado pelo NextAuth
+
+
+                    return user
+                } catch (error: any) {
+                    return error
                 }
-
-                // Retorne o usuário no formato esperado pelo NextAuth
-                return user | null
             }
         })
     ],
@@ -101,34 +113,47 @@ export default {
     },
     events: {
         async createUser(message: any) {
-            if (message.user) {
-                try {
+
+            try {
+                if (message.user) {
                     await createStripeCustomer({
                         name: message.user.name as string,
                         email: message.user.email as string,
                     });
-                } catch (error) {
-                    console.error("Error creating Stripe customer:", error);
                 }
+            } catch (error) {
+                console.error("Error creating Stripe customer:", error);
             }
+
         },
         async signIn(message: any) {
-            if (message.user) {
-                try {
+
+            try {
+                if (message.user) {
                     await createStripeCustomer({
                         name: message.user.name as string,
                         email: message.user.email as string,
                     });
-                } catch (error) {
-                    console.error("Error creating Stripe customer:", error);
                 }
+            } catch (error) {
+                console.error("Error creating Stripe customer:", error);
             }
+
         },
     },
     callbacks: {
-        async session({ session, user }: any) {
-            session.user = { ...session.user, id: user.id };
+
+
+        async session({ session, token }) {
+            console.log("Session Callback - Token recebido:", token);
+
+            if (token.user) {
+                session.user = token.user as any;
+            }
+
+            console.log("Session Callback - Sessão criada:", session);
             return session;
         },
+
     }
 } satisfies NextAuthConfig;
