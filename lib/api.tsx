@@ -1,33 +1,43 @@
-import { mockMetrics, mockRecentActivity } from './mock-data'
+import { mockOrganizations, mockTeams, mockMetrics, mockRecentActivity } from './mock-data'
 
-// Simula um atraso de rede
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
 
+export type Organization = {
+  id: string
+  name: string
+}
+
+export type Team = {
+  id: string
+  name: string
+  organizationId: string
+}
+
 export async function fetchDashboardData(organizationId: string, teamId: string) {
-  await delay(500) // Simula um atraso de rede de 500ms
-  
-  // Aqui você poderia adicionar lógica para retornar dados diferentes com base na organização e equipe
+  await delay(500)
   return {
-    metrics: mockMetrics,
-    recentActivity: mockRecentActivity
+    metrics: mockMetrics[organizationId]?.[teamId] || {},
+    recentActivity: mockRecentActivity[organizationId]?.[teamId] || []
   }
 }
 
-export async function fetchOrganizations() {
+export async function fetchOrganizations(): Promise<Organization[]> {
   await delay(300)
-  return [
-    { id: '1', name: 'Acme Corporation' },
-    { id: '2', name: 'Globex Corporation' },
-    { id: '3', name: 'Soylent Corp' },
-  ]
+  return mockOrganizations
 }
 
-export async function fetchTeams(organizationId: string) {
+export async function fetchTeams(organizationId: string): Promise<Team[]> {
   await delay(300)
-  return [
-    { id: '1', name: 'Sales Team' },
-    { id: '2', name: 'Marketing Team' },
-    { id: '3', name: 'Development Team' },
-  ]
+  return mockTeams[organizationId] || []
+}
+
+export async function updateSelectedOrganization(organizationId: string): Promise<void> {
+  await delay(300)
+  console.log(`Updated selected organization to: ${organizationId}`)
+}
+
+export async function updateSelectedTeam(teamId: string): Promise<void> {
+  await delay(300)
+  console.log(`Updated selected team to: ${teamId}`)
 }
 

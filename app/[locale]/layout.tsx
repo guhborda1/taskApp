@@ -49,22 +49,20 @@ export default async function RootLayout({
 
   console.log(session)
   return (
-    <html lang={locale} suppressHydrationWarning>
-      <body>
-        <NextIntlClientProvider locale={locale} messages={messages}>
-          <AuthProvider session={session} >
-            <QueryProvider>
-              <ThemeProvider attribute="class">
-                
-                  {children}
-                
-                <Toaster />
-              </ThemeProvider>
-            </QueryProvider>
-          </AuthProvider>
-        </NextIntlClientProvider>
-      </body>
 
-    </html >
+
+    <NextIntlClientProvider locale={locale} messages={messages}>
+      <AuthProvider session={session} >
+        <QueryProvider>
+          <ThemeProvider attribute="class">
+            
+              {children}
+            
+            <Toaster />
+          </ThemeProvider>
+        </QueryProvider>
+      </AuthProvider>
+    </NextIntlClientProvider>
+
   );
 }

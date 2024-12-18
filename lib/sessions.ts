@@ -1,38 +1,61 @@
-import 'server-only'
-import { SignJWT, jwtVerify } from 'jose'
+import { Session } from '@/types/next-auth';
+import { compare, hash } from 'bcryptjs';
+import { JWTPayload, SignJWT, jwtVerify } from 'jose';
+import { User } from 'next-auth';
+import { cookies } from 'next/headers';
 
-import { cookies } from 'next/headers'
-const secretKey = process.env.SESSION_SECRET
-const encodedKey = new TextEncoder().encode(secretKey)
 
-export async function encrypt(payload: any) {
-    return new SignJWT(payload)
+const key = new TextEncoder().encode(process.env.AUTH_SECRET);
+const SALT_ROUNDS = 10;
+
+export async function hashPassword(password: string) {
+    return hash(password, SALT_ROUNDS);
+}
+
+export async function comparePasswords(
+    plainTextPassword: string,
+    hashedPassword: string
+) {
+    return compare(plainTextPassword, hashedPassword);
+}
+
+type SessionData = {
+    user: { id: string };
+    expires: string;
+};
+
+export async function signToken(payload: SessionData) {
+    return await new SignJWT(payload)
         .setProtectedHeader({ alg: 'HS256' })
         .setIssuedAt()
-        .setExpirationTime('7d')
-        .sign(encodedKey)
+        .setExpirationTime('1 day from now')
+        .sign(key);
 }
 
-export async function decrypt(session: string | undefined = '') {
-    try {
-        const { payload } = await jwtVerify(session, encodedKey, {
-            algorithms: ['HS256'],
-        })
-        return payload
-    } catch (error) {
-        console.log('Failed to verify session')
-    }
+export async function verifyToken(input: string) {
+    const { payload } = await jwtVerify(input, key, {
+        algorithms: ['HS256'],
+    });
+    return payload as SessionData;
 }
-export async function createSession(userId: string) {
-    const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
-    const session = await encrypt({ userId, expiresAt }) // Correto: espera pela Promise aqui.
-    const cookieStore = await cookies()
 
-    cookieStore.set('session', session, {
+export async function getSession() {
+    const session = (await cookies()).get('session')?.value;
+    if (!session) return null;
+    return await verifyToken(session);
+}
+
+export async function setSession(user: Session) {
+    const expiresInOneDay = new Date(Date.now() + 24 * 60 * 60 * 1000);
+    const session: SessionData = {
+        user: { id: user.user.id },
+        expires: expiresInOneDay.toISOString(),
+    };
+    const encryptedSession = await signToken(session);
+    (await cookies()).set('session', encryptedSession, {
+        expires: expiresInOneDay,
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        expires: expiresAt,
+        secure: true,
         sameSite: 'lax',
-        path: '/',
-    })
+    });
 }

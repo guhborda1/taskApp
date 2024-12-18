@@ -126,6 +126,7 @@
   "MESSAGES": {
     "ERRORS": {
       "DEFAULT": "Oh não.. Algo deu errado. Por favor, tente novamente",
+      "NOT_FOUND":"Ops, parece que a página que você está procurando não existe.",
       "TAKEN_USERNAME": "",
       "USER_ALREADY_EXIST": "Usuário já existe",
       "FIELD_REQUIRED":"Campo obrigatório",

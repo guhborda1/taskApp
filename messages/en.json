@@ -126,6 +126,7 @@
     "MESSAGES": {
       "ERRORS": {
         "DEFAULT": "Oh no..Something went wrong. Please try again",
+        "NOT_FOUND":"Oops, it looks like the page you're looking for doesn't exist.",
         "FIELD_REQUIRED":"This field is required",
         "USER_ALREADY_EXIST": "This username is already taken",
         "TAKEN_EMAIL": "This email is already in use...",
@@ -798,7 +799,7 @@
       "BTN": "Try again"
     },
     "ROUTES": {
-      "DASHBOARD": "Home",
+      "DASHBOARD": "Dashboard",
       "SETTINGS": "Settings",
       "SECURITY": "Security",
       "THEME": "Theme",
@@ -806,7 +807,9 @@
       "UNTITLED": "Untitled",
       "POMODORO": "Pomodoro",
       "STARRED": "Starred",
-      "ASSIGNED-TO-ME": "Assigned to me"
+      "ASSIGNED-TO-ME": "Assigned to me",
+      "CONTACTS":"Contacts"
+
     },
     "EDIT_WORKSPACE": {
       "TITLE": "Edit workspace",

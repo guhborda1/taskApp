@@ -44,7 +44,6 @@ export function SignInForm() {
             const account = await signIn("credentials", {
                 email: data.email,
                 password: data.password,
-                redirect: false,
             });
 
             console.log(account)

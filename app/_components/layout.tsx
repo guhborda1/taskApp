@@ -21,6 +21,7 @@ import {
 
     SquareTerminal,
     Trash2,
+    X,
 } from "lucide-react"
 
 
@@ -59,16 +60,21 @@ import {
     SidebarMenuSubButton,
     SidebarMenuSubItem,
     SidebarProvider,
+    SidebarTrigger,
 
 } from "@/components/ui/sidebar"
 
 import { DashboardSideBarInsetHeader } from './dashboardSideBarInsetHeader/dashboardSideBarInsetHeader'
 import { DasboardSidebarFooter } from './dasboardSidebarFooter/dasboardSidebarFooter'
 
-import React from "react"
+import React, { useState } from "react"
 import { usePathname, useRouter } from "next/navigation"
 import { useSession } from "next-auth/react"
 import { useOrgApp } from "@/providers/OrgProvider"
+import { DialogTitle } from "@/components/ui/dialog"
+import { Button } from "@/components/ui/button"
+import { Sheet, SheetContent } from "@/components/ui/sheet"
+import { DashSideBar } from "./dashSideBar"
 
 
 export interface userDataInterface {
@@ -80,9 +86,9 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     const { data: session, status } = useSession()
     const paths = usePathname()
     const pathNames = paths.split('/').filter(path => path)
-
     const router = useRouter();
-    console.log(session)
+    const { currentOrganization, currentTeam } = useOrgApp()
+    const [sidebarOpen, setSidebarOpen] = useState(false)
     if (!session?.user)
         router.push('/auth/')
     const data = {
@@ -192,173 +198,30 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             },
         ],
     }
-    const { currentOrganization } = useOrgApp()
     return (
 
         <SidebarProvider>
-            <Sidebar variant="inset">
-                <SidebarHeader>
-
-                    <SidebarMenu>
-
-                        <SidebarMenuItem>
-                            <SidebarMenuButton size="lg" asChild>
-                                <a href="#">
-                                    <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-                                        <Command className="size-4" />
-                                    </div>
-                                    <div className="grid flex-1 text-left text-sm leading-tight">
-                                        <span className="truncate font-semibold">{currentOrganization?.name || 'CRM Dashboard'}</span>
-                                        <span className="truncate text-xs">Enterprise</span>
-                                    </div>
-                                </a>
-                            </SidebarMenuButton>
-                        </SidebarMenuItem>
-                    </SidebarMenu>
-                </SidebarHeader>
-                <SidebarContent>
-                    <SidebarGroup>
-                        <SidebarGroupLabel>Platform</SidebarGroupLabel>
-                        <SidebarMenu>
-                            {data.navMain.map((link, index) => {
-                                const href = `/${pathNames.slice(0, index + 1).join('/')}`
-                                const itemClasses = paths === href ? 'bg-primary-foreground' : ''
-                                const itemLink = true ? link.title.toUpperCase() + link.url.slice(1, link.url.length) : link.title
-                                return (
-                                    <Collapsible
-                                        key={link.title}
-                                        asChild
-                                        defaultOpen={link.isActive}
-                                    >
-                                        <SidebarMenuItem>
-                                            <SidebarMenuButton className={`${itemClasses}`} asChild tooltip={link.title}>
-                                                <a href={link.url}>
-                                                    <link.icon />
-                                                    <span>{link.title}</span>
-                                                </a>
-                                            </SidebarMenuButton>
-                                            {link.items?.length ? (
-                                                <>
-                                                    <CollapsibleTrigger asChild>
-                                                        <SidebarMenuAction className="data-[state=open]:rotate-90">
-                                                            <ChevronRight />
-                                                            <span className="sr-only">Toggle</span>
-                                                        </SidebarMenuAction>
-                                                    </CollapsibleTrigger>
-                                                    <CollapsibleContent>
-                                                        <SidebarMenuSub>
-                                                            {link.items?.map((subItem, index) => {
-                                                                const href = `/${pathNames.slice(0, index + 1).join('/')}`
-                                                                const itemClasses = paths === href ? 'bg-primary-foreground' : ''
-                                                                const itemLink = true ? subItem.title.toUpperCase() + subItem.url.slice(1, subItem.url.length) : subItem.title
-                                                                return (
-                                                                    <SidebarMenuSubItem key={subItem.title}>
-                                                                        <SidebarMenuSubButton asChild>
-                                                                            <a href={subItem.url}>
-                                                                                <span>{subItem.title}</span>
-                                                                            </a>
-                                                                        </SidebarMenuSubButton>
-                                                                    </SidebarMenuSubItem>
-                                                                )
-                                                            })}
-                                                        </SidebarMenuSub>
-                                                    </CollapsibleContent>
-                                                </>
-                                            ) : null}
-                                        </SidebarMenuItem>
-                                    </Collapsible>
-                                )
-                            })}
-                        </SidebarMenu>
-                    </SidebarGroup>
-                    <SidebarGroup className="group-data-[collapsible=icon]:hidden">
-                        <SidebarGroupLabel>Projects</SidebarGroupLabel>
-                        <SidebarMenu>
-                            {data.projects.map((item) => (
-                                <SidebarMenuItem key={item.name}>
-                                    <SidebarMenuButton asChild>
-                                        <a href={item.url}>
-                                            <item.icon />
-                                            <span>{item.name}</span>
-                                        </a>
-                                    </SidebarMenuButton>
-                                    <DropdownMenu>
-                                        <DropdownMenuTrigger asChild>
-                                            <SidebarMenuAction showOnHover>
-                                                <MoreHorizontal />
-                                                <span className="sr-only">More</span>
-                                            </SidebarMenuAction>
-                                        </DropdownMenuTrigger>
-                                        <DropdownMenuContent
-                                            className="w-48"
-                                            side="bottom"
-                                            align="end"
-                                        >
-                                            <DropdownMenuItem>
-                                                <Folder className="text-muted-foreground" />
-                                                <span>View Project</span>
-                                            </DropdownMenuItem>
-                                            <DropdownMenuItem>
-                                                <Share className="text-muted-foreground" />
-                                                <span>Share Project</span>
-                                            </DropdownMenuItem>
-                                            <DropdownMenuSeparator />
-                                            <DropdownMenuItem>
-                                                <Trash2 className="text-muted-foreground" />
-                                                <span>Delete Project</span>
-                                            </DropdownMenuItem>
-                                        </DropdownMenuContent>
-                                    </DropdownMenu>
-                                </SidebarMenuItem>
-                            ))}
-                            <SidebarMenuItem>
-                                <SidebarMenuButton>
-                                    <MoreHorizontal />
-                                    <span>More</span>
-                                </SidebarMenuButton>
-                            </SidebarMenuItem>
-                        </SidebarMenu>
-                    </SidebarGroup>
-                    <SidebarGroup className="mt-auto">
-                        <SidebarGroupContent>
-                            <SidebarMenu>
-                                {data.navSecondary.map((link, index) => {
-                                    const href = `/${pathNames.slice(0, index + 1).join('/')}`
-                                    const itemClasses = paths === href ? 'bg-primary-foreground' : ''
-                                    const itemLink = true ? link.title.toUpperCase() + link.url.slice(1, link.url.length) : link.title
-                                    return (
-                                        <SidebarMenuItem key={index}>
-                                            <SidebarMenuButton className={`${itemClasses}`} asChild size="sm">
-                                                <a href={link.url}>
-                                                    <link.icon />
-                                                    <span>{itemLink}</span>
-                                                </a>
-                                            </SidebarMenuButton>
-                                        </SidebarMenuItem>
-                                    )
-                                })}
-                            </SidebarMenu>
-                        </SidebarGroupContent>
-                    </SidebarGroup>
-                </SidebarContent>
-                <DasboardSidebarFooter />
-            </Sidebar>
-            <SidebarInset>
-                <DashboardSideBarInsetHeader homeElement={<HomeIcon size={12} />}
-                    separator={
-                        <BreadcrumbSeparator className="hidden md:block" />
-                    }
-                    activeClasses='font-bold'
-                    containerClasses=''
-                    listClasses='text-black mx-2'
-                    capitalizeLinks />
-                <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
-                    < main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8" >
+            <DashSideBar session={session} paths={paths} pathNames={pathNames} router={router} currentOrganization={currentOrganization} currentTeam={currentTeam} sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+            <SidebarInset className="w-full relative flex max-h-[95vh] pb-1">
+                <div className="sticky top-0 z-10 flex w-full items-center gap-4 border-b bg-background px-6 h-16">
+                    <SidebarTrigger onClick={() => setSidebarOpen(true)} className="md:hidden" />
+                    <DashboardSideBarInsetHeader
+                        homeElement={<HomeIcon size={12} />}
+                        separator={<BreadcrumbSeparator className="hidden md:block" />}
+                        activeClasses='font-bold'
+                        containerClasses=''
+                        listClasses='text-black mx-2'
+                        capitalizeLinks
+                    />
+                </div>
+                <div className="flex flex-1 flex-col gap-4 p-4 pt-0 h-screen overflow-y-scroll">
+                    <main className="w-full mx-auto py-6 sm:px-6 lg:px-8">
                         {children}
                     </main>
                 </div>
             </SidebarInset>
         </SidebarProvider>
+
 
 
     )

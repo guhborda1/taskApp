@@ -1,31 +1,13 @@
-import type { NextAuthConfig } from "next-auth";
-import CredentialsProvider from "next-auth/providers/credentials";
-import Google from "next-auth/providers/google";
-import { createStripeCustomer } from "./services/stripe";
-import { db } from "./lib/prisma";
 
-interface User {
-    id: string;
-    name: string;
-    email: string;
-    password: string | null;
-    emailVerified: Date | null;
-    image: string | null;
-    stripeCustomerId: string | null;
-    stripeSubscriptionId: string | null;
-    selectedTeam: string | null;
-}
-
-interface UserLogin {
-    email: string;
-    password: string | Promise<string>;
-}
-
-import bcrypt from 'bcryptjs';
-import { signInSchema } from "./schema/signInSchema";
-import { createSession } from "./lib/sessions";
-
-// Hashear a senha
+import GoogleProvider from "next-auth/providers/google"
+import type { NextAuthConfig } from "next-auth"
+import { createStripeCustomer } from "./services/stripe"
+import Credentials from "next-auth/providers/credentials"
+import { db } from "./lib/prisma"
+import { signInSchema } from "./schema/signInSchema"
+import { ZodError } from "zod"
+import bcrypt from 'bcryptjs'
+import User from "next-auth"
 export const saltAndHashPassword = async (password: string) => {
     const salt = await bcrypt.genSalt(10);
     return await bcrypt.hash(password, salt);
@@ -62,98 +44,96 @@ export const getUserFromDb = async ({ email, password }: { email: string; passwo
     return user;
 };
 export default {
-    debug: true,
-    providers: [
-        Google({
-            clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENTID,
-            clientSecret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET,
-        }),
-        CredentialsProvider({
-            name: 'Credentials',
-            credentials: {
-                email: { label: "Email", type: "text", placeholder: "Email" },
-                password: {
-                    label: "Password",
-                    type: "password",
-                    placeholder: "Password",
-                },
-            },
-            authorize: async (credentials) => {
-                try {
-
-
-                    const { email, password } = await signInSchema.parse(credentials);
-
-                    // Salta e hasheia a senha
-                    // Verifica se o usuário existe
-                    const user = await getUserFromDb({ email, password });
-                    if (!user) {
-                        throw new Error("Error on Execute action");
-                    }
-                    // Retorne o usuário no formato esperado pelo NextAuth
-
-
-                    return user
-                } catch (error: any) {
-                    return error
-                }
-            }
-        })
-    ],
-    cookies: {
-        sessionToken: {
-            name: "authjs.session-token",
-            options: {
-                path: "/",
-                httpOnly: true,
-                sameSite: "lax",
-                secure: true
-            }
+    providers: [GoogleProvider(
+        {
+            clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENTID as string,
+            clientSecret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET as string
         }
-    },
-    events: {
-        async createUser(message: any) {
-
-            try {
-                if (message.user) {
-                    await createStripeCustomer({
-                        name: message.user.name as string,
-                        email: message.user.email as string,
-                    });
-                }
-            } catch (error) {
-                console.error("Error creating Stripe customer:", error);
-            }
-
+    ),
+    Credentials({
+        // You can specify which fields should be submitted, by adding keys to the `credentials` object.
+        // e.g. domain, username, password, 2FA token, etc.
+        credentials: {
+            email: {},
+            password: {},
         },
-        async signIn(message: any) {
-
+        authorize: async (credentials, req) => {
             try {
-                if (message.user) {
+                if (!credentials) throw new Error("Missing credentials");
+
+                const { email, password } = await signInSchema.parseAsync(credentials)
+
+                // logic to salt and hash password
+                const pwHash = saltAndHashPassword(password)
+
+                // logic to verify if the user exists
+                const user = await getUserFromDb({ email, password })
+
+                if (!user) {
+                    throw new Error("Invalid credentials");
+                }
+
+                // Retornar o usuário diretamente (conforme a interface `User`)
+                return {
+                    id: user.id,
+                    name: user.name,
+                    email: user.email,
+                    image: user.image,
+                    role: user.roleId,
+                    stripeCustomerId: user.stripeCustomerId,
+                    stripeSubscriptionId: user.stripeSubscriptionId,
+                    stripeSubscriptionStatus: user.stripeSubscriptionStatus,
+                    stripePriceId: user.stripePriceId,
+                };
+            } catch (error) {
+                if (error instanceof ZodError) {
+                    // Return `null` to indicate that the credentials are invalid
+                    return null
+                }
+            }
+        },
+    }),
+
+    ],
+    events: {
+
+        async createUser(message) {
+            // Only proceed if the user is newly created (i.e., sign-up)
+            if (message.user) {
+                try {
                     await createStripeCustomer({
                         name: message.user.name as string,
                         email: message.user.email as string,
                     });
+                } catch (error) {
+                    console.error("Error creating Stripe customer:", error);
                 }
-            } catch (error) {
-                console.error("Error creating Stripe customer:", error);
             }
-
+        },
+        async signIn(message) {
+            // Only proceed if the user is newly created (i.e., sign-up)
+            if (message.user) {
+                try {
+                    await createStripeCustomer({
+                        name: message.user.name as string,
+                        email: message.user.email as string,
+                    });
+                } catch (error) {
+                    console.error("Error creating Stripe customer:", error);
+                }
+            }
         },
     },
     callbacks: {
-
-
-        async session({ session, token }) {
-            console.log("Session Callback - Token recebido:", token);
-
-            if (token.user) {
-                session.user = token.user as any;
-            }
-
-            console.log("Session Callback - Sessão criada:", session);
+        async session({ session, user }) {
+            session.user = { ...session.user, id: user.id, }
             return session;
         },
+        // async jwt({ token, user }) {
+        //     // Adicionar businessId no token se o usuário tiver um negócio associado
 
+
+        //     return token
+        // },
     }
-} satisfies NextAuthConfig;
+} satisfies NextAuthConfig

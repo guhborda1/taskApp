@@ -1,17 +1,7 @@
 'use client'
 
 import { createContext, useState, useContext, ReactNode, useEffect } from 'react'
-import { fetchOrganizations, fetchTeams } from '@/lib/api'
-
-type Organization = {
-  id: string
-  name: string
-}
-
-type Team = {
-  id: string
-  name: string
-}
+import { fetchOrganizations, fetchTeams, updateSelectedOrganization, updateSelectedTeam, Organization, Team } from '@/lib/api'
 
 type AppContextType = {
   organizations: Organization[]
@@ -31,25 +21,52 @@ export function OrgProvider({ children }: { children: ReactNode }) {
   const [currentTeam, setCurrentTeam] = useState<Team | null>(null)
 
   useEffect(() => {
-    fetchOrganizations().then(setOrganizations)
+    fetchOrganizations().then(orgs => {
+      setOrganizations(orgs)
+      if (orgs.length > 0 && !currentOrganization) {
+        setCurrentOrganization(orgs[0])
+      }
+    })
   }, [])
 
   useEffect(() => {
     if (currentOrganization) {
-      fetchTeams(currentOrganization.id).then(setTeams)
+      fetchTeams(currentOrganization.id).then(fetchedTeams => {
+        setTeams(fetchedTeams)
+        if (fetchedTeams.length > 0 && !currentTeam) {
+          setCurrentTeam(fetchedTeams[0])
+        }
+      })
+      updateSelectedOrganization(currentOrganization.id)
     } else {
       setTeams([])
+      setCurrentTeam(null)
     }
   }, [currentOrganization])
+
+  useEffect(() => {
+    if (currentTeam) {
+      updateSelectedTeam(currentTeam.id)
+    }
+  }, [currentTeam])
+
+  const setCurrentOrganizationAndUpdate = (org: Organization | null) => {
+    setCurrentOrganization(org)
+    setCurrentTeam(null)
+  }
+
+  const setCurrentTeamAndUpdate = (team: Team | null) => {
+    setCurrentTeam(team)
+  }
 
   return (
     <AppContext.Provider value={{
       organizations,
       teams,
       currentOrganization,
-      setCurrentOrganization,
+      setCurrentOrganization: setCurrentOrganizationAndUpdate,
       currentTeam,
-      setCurrentTeam
+      setCurrentTeam: setCurrentTeamAndUpdate
     }}>
       {children}
     </AppContext.Provider>
