@@ -61,6 +61,7 @@ import {
     SidebarMenuSubItem,
     SidebarProvider,
     SidebarTrigger,
+    useSidebar,
 
 } from "@/components/ui/sidebar"
 
@@ -71,10 +72,12 @@ import React, { useState } from "react"
 import { usePathname, useRouter } from "next/navigation"
 import { useSession } from "next-auth/react"
 import { useOrgApp } from "@/providers/OrgProvider"
-import { DialogTitle } from "@/components/ui/dialog"
-import { Button } from "@/components/ui/button"
+
+
 import { Sheet, SheetContent } from "@/components/ui/sheet"
-import { DashSideBar } from "./dashSideBar"
+import { Button } from "@/components/ui/button"
+import { ViewVerticalIcon } from "@radix-ui/react-icons"
+
 
 
 export interface userDataInterface {
@@ -198,13 +201,173 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             },
         ],
     }
+    const { toggleSidebar } = useSidebar()
     return (
 
         <SidebarProvider>
-            <DashSideBar session={session} paths={paths} pathNames={pathNames} router={router} currentOrganization={currentOrganization} currentTeam={currentTeam} sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+            <Sidebar variant="inset">
+                <SidebarHeader>
+                    <SidebarMenu>
+                        <SidebarMenuItem>
+                            <SidebarMenuButton size="lg" asChild>
+                                <a href="#">
+                                    <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
+                                        <Command className="size-4" />
+                                    </div>
+                                    <div className="grid flex-1 text-left text-sm leading-tight">
+                                        <span className="truncate font-semibold">{currentOrganization?.name || 'CRM Dashboard'}</span>
+                                        <span className="truncate text-xs">{currentTeam?.name || 'Team A'}</span>
+                                    </div>
+                                </a>
+                            </SidebarMenuButton>
+                        </SidebarMenuItem>
+                    </SidebarMenu>
+                </SidebarHeader>
+                <SidebarContent>
+                    <SidebarGroup>
+                        <SidebarGroupLabel>Platform</SidebarGroupLabel>
+                        <SidebarMenu>
+                            {data.navMain.map((link, index) => {
+                                if (!link || !link.title) {
+                                    console.error("Link inválido em navMain:", link);
+                                    return null;
+                                }
+                                const href = `/${pathNames.slice(0, index + 1).join('/')}`
+                                const itemClasses = paths === href ? 'bg-primary-foreground' : ''
+                                const itemLink = true ? link.title.toUpperCase() + link.url.slice(1, link.url.length) : link.title
+                                return (
+                                    <Collapsible
+                                        key={index}
+                                        asChild
+                                        defaultOpen={link.isActive}
+                                    >
+                                        <SidebarMenuItem>
+                                            <SidebarMenuButton className={`${itemClasses}`} asChild tooltip={link.title ? link.title : 'M'}>
+                                                <a href={link.url}>
+                                                    <link.icon />
+                                                    <span>{link.title ? link.title : 'M'}</span>
+                                                </a>
+                                            </SidebarMenuButton>
+                                            {link.items?.length ? (
+                                                <>
+                                                    <CollapsibleTrigger asChild>
+                                                        <SidebarMenuAction className="data-[state=open]:rotate-90">
+                                                            <ChevronRight />
+                                                            <span className="sr-only">Toggle</span>
+                                                        </SidebarMenuAction>
+                                                    </CollapsibleTrigger>
+                                                    <CollapsibleContent>
+                                                        <SidebarMenuSub>
+                                                            {link.items?.map((subItem, index) => {
+                                                                const href = `/${pathNames.slice(0, index + 1).join('/')}`
+                                                                const itemClasses = paths === href ? 'bg-primary-foreground' : ''
+                                                                const itemLink = true ? subItem.title.toUpperCase() + subItem.url.slice(1, subItem.url.length) : subItem.title
+                                                                return (
+                                                                    <SidebarMenuSubItem key={subItem.title}>
+                                                                        <SidebarMenuSubButton asChild>
+                                                                            <a href={subItem.url}>
+                                                                                <span>{subItem.title}</span>
+                                                                            </a>
+                                                                        </SidebarMenuSubButton>
+                                                                    </SidebarMenuSubItem>
+                                                                )
+                                                            })}
+                                                        </SidebarMenuSub>
+                                                    </CollapsibleContent>
+                                                </>
+                                            ) : null}
+                                        </SidebarMenuItem>
+                                    </Collapsible>
+                                )
+                            })}
+                        </SidebarMenu>
+                    </SidebarGroup>
+                    <SidebarGroup className="group-data-[collapsible=icon]:hidden">
+                        <SidebarGroupLabel>Projects</SidebarGroupLabel>
+                        <SidebarMenu>
+                            {data.projects.map((item) => (
+                                <SidebarMenuItem key={item.name}>
+                                    <SidebarMenuButton asChild>
+                                        <a href={item.url}>
+                                            <item.icon />
+                                            <span>{item.name}</span>
+                                        </a>
+                                    </SidebarMenuButton>
+                                    <DropdownMenu>
+                                        <DropdownMenuTrigger asChild>
+                                            <SidebarMenuAction showOnHover>
+                                                <MoreHorizontal />
+                                                <span className="sr-only">More</span>
+                                            </SidebarMenuAction>
+                                        </DropdownMenuTrigger>
+                                        <DropdownMenuContent
+                                            className="w-48"
+                                            side="bottom"
+                                            align="end"
+                                        >
+                                            <DropdownMenuItem>
+                                                <Folder className="text-muted-foreground" />
+                                                <span>View Project</span>
+                                            </DropdownMenuItem>
+                                            <DropdownMenuItem>
+                                                <Share className="text-muted-foreground" />
+                                                <span>Share Project</span>
+                                            </DropdownMenuItem>
+                                            <DropdownMenuSeparator />
+                                            <DropdownMenuItem>
+                                                <Trash2 className="text-muted-foreground" />
+                                                <span>Delete Project</span>
+                                            </DropdownMenuItem>
+                                        </DropdownMenuContent>
+                                    </DropdownMenu>
+                                </SidebarMenuItem>
+                            ))}
+                            <SidebarMenuItem>
+                                <SidebarMenuButton>
+                                    <MoreHorizontal />
+                                    <span>More</span>
+                                </SidebarMenuButton>
+                            </SidebarMenuItem>
+                        </SidebarMenu>
+                    </SidebarGroup>
+                    <SidebarGroup className="mt-auto">
+                        <SidebarGroupContent>
+                            <SidebarMenu>
+                                {data.navSecondary.map((link, index) => {
+                                    const href = `/${pathNames.slice(0, index + 1).join('/')}`
+                                    const itemClasses = paths === href ? 'bg-primary-foreground' : ''
+                                    const itemLink = true ? link.title.toUpperCase() + link.url.slice(1, link.url.length) : link.title
+                                    return (
+                                        <SidebarMenuItem key={index}>
+                                            <SidebarMenuButton className={`${itemClasses}`} asChild size="sm">
+                                                <a href={link.url}>
+                                                    <link.icon />
+                                                    <span>{link.title ? link.title : 'M'}</span>
+                                                </a>
+                                            </SidebarMenuButton>
+                                        </SidebarMenuItem>
+                                    )
+                                })}
+                            </SidebarMenu>
+                        </SidebarGroupContent>
+                    </SidebarGroup>
+                </SidebarContent>
+                <DasboardSidebarFooter />
+            </Sidebar>
+
             <SidebarInset className="w-full relative flex max-h-[95vh] pb-1">
                 <div className="sticky top-0 z-10 flex w-full items-center gap-4 border-b bg-background px-6 h-16">
-                    <SidebarTrigger onClick={() => setSidebarOpen(true)} className="md:hidden" />
+
+                    <Button
+                        data-sidebar="trigger"
+                        variant="ghost"
+                        size="icon"
+                        className={"h-7 w-7"}
+                        onClick={(event) => {
+                            toggleSidebar()
+                        }}>
+                        <ViewVerticalIcon />
+                    </Button>
                     <DashboardSideBarInsetHeader
                         homeElement={<HomeIcon size={12} />}
                         separator={<BreadcrumbSeparator className="hidden md:block" />}

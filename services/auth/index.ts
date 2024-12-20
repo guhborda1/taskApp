@@ -14,22 +14,9 @@ export const {
         signIn: '/auth/', signOut: '/auth/', error: '/auth/',
         newUser: '/dashboard'
     },
-    
+
     adapter: PrismaAdapter(db) as Adapter,
-    // providers: [Google, EmailProvider()],
+
     secret: process.env.SECRET,
     ...authConfig,
-
-
-    // callbacks: {
-    //     async session({ session, user }) {
-    //         session.user = { ...session.user, id: user.id, role: user.role } as {
-    //             id: string;
-    //             name: string;
-    //             email: string;
-    //             role: string;
-    //         };
-    //         return session;
-    //     },
-    // },
 })

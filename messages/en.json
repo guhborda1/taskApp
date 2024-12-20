@@ -146,6 +146,7 @@
       "SUCCESS": {
         "SIGN_UP": "Account was created!",
         "SIGN_IN": "You have been logged in!",
+        "EMAIL_SENT":"Email sent, check your mail provider",
         "IMAGE_PROFILE_UPDATE": "Your profile image has been updated!",
         "IMAGE_PROFILE_DELETE": "Your profile image has been deleted!",
         "ONBOARDING_COMPLETE": "Welcome to Super Productive!",

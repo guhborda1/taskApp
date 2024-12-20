@@ -33,38 +33,6 @@ enum NotifyType {
   NEW_ASSIGNMENT_MIND_MAP
 }
 
-model Role {
-  id              String            @id @default(cuid())
-  name            String            @unique
-  description     String? // Descrição opcional do papel
-  createdAt       DateTime          @default(now())
-  updatedAt       DateTime          @updatedAt
-  permissions     Permission[]      @relation("RolePermissions") // Relacionamento com permissões
-  users           User[] // Relacionamento com usuários
-  RolePermissions RolePermissions[]
-}
-
-model Permission {
-  id              String            @id @default(cuid())
-  name            String            @unique
-  description     String? // Descrição opcional da permissão
-  createdAt       DateTime          @default(now())
-  updatedAt       DateTime          @updatedAt
-  roles           Role[]            @relation("RolePermissions") // Relacionamento com roles
-  RolePermissions RolePermissions[]
-}
-
-model RolePermissions {
-  roleId       String
-  permissionId String
-  createdAt    DateTime @default(now())
-
-  role       Role       @relation(fields: [roleId], references: [id])
-  permission Permission @relation(fields: [permissionId], references: [id])
-
-  @@id([roleId, permissionId]) // Chave primária composta
-}
-
 model Organization {
   id        String   @id
   name      String
@@ -154,9 +122,9 @@ model User {
   password                 String?
   createdAt                DateTime  @default(now())
   updatedAt                DateTime  @updatedAt
-  roleId                   String?   @default("USER")
-  selectedBusiness         String?
-  selectedTeam             String?
+
+  selectedBusiness String?
+  selectedTeam     String?
 
   accounts          Account[]
   sessions          Session[]
@@ -169,8 +137,6 @@ model User {
   Comment           Comment[]
   ActivityLog       ActivityLog[]
   Contact           Contact[]
-
-  Role Role? @relation(fields: [roleId], references: [id])
 }
 
 model FinancialTransaction {
@@ -273,6 +239,7 @@ model BoardMember {
 }
 
 enum RoleType {
+  admin
   owner
   member
 }

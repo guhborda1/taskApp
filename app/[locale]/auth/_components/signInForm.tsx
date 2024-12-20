@@ -41,9 +41,10 @@ export function SignInForm() {
         setIsLoading(true);
 
         try {
-            const account = await signIn("credentials", {
+            const account = await signIn("resend", {
                 email: data.email,
                 password: data.password,
+                redirect: false
             });
 
             console.log(account)
@@ -55,9 +56,9 @@ export function SignInForm() {
                 });
             } else {
                 toast({
-                    title: m("SUCCESS.SIGN_IN"),
+                    title: m("SUCCESS.EMAIL_SENT"),
                 });
-
+                form.reset();
 
             }
         } catch (err) {
@@ -97,19 +98,7 @@ export function SignInForm() {
                                             {...register("email", { required: true })}
                                         />
                                     </div>
-                                    <div className="grid gap-2">
-                                        <div className="flex items-center">
-                                            <Label htmlFor="password">{au("PASSWORD")}</Label>
-                                            <Link
-                                                href="/auth/forgot-password"
-                                                className="ml-auto inline-block text-sm underline"
-                                            >
-                                                {au('SIGN_IN.FORGOT_PASSWORD')}
-                                            </Link>
-                                        </div>
-                                        <Input id="password" type="password" placeholder={`${au("PASSWORD")}`} {...register("password", { required: true })} />
-                                        {errors.password && <span>{m("ERRORS.WRONG_DATA")}</span>}
-                                    </div>
+
                                     <div className="flex flex-col gap-2">
                                         <Button type="submit" className="w-full">
                                             {isLoading ? m("PENDING.LOADING") : au('SIGN_IN.TITLE')}
