@@ -201,7 +201,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             },
         ],
     }
-    const { toggleSidebar } = useSidebar()
+
     return (
 
         <SidebarProvider>
@@ -358,16 +358,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             <SidebarInset className="w-full relative flex max-h-[95vh] pb-1">
                 <div className="sticky top-0 z-10 flex w-full items-center gap-4 border-b bg-background px-6 h-16">
 
-                    <Button
-                        data-sidebar="trigger"
-                        variant="ghost"
-                        size="icon"
-                        className={"h-7 w-7"}
-                        onClick={(event) => {
-                            toggleSidebar()
-                        }}>
-                        <ViewVerticalIcon />
-                    </Button>
+                    <SidebarTrigger><Button>Side</Button></SidebarTrigger>
                     <DashboardSideBarInsetHeader
                         homeElement={<HomeIcon size={12} />}
                         separator={<BreadcrumbSeparator className="hidden md:block" />}

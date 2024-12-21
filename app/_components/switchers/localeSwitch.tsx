@@ -10,6 +10,8 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { Button } from "@/components/ui/button";
 import { LoadingState } from "@/components/ui/loadingState";
 import { HoverCard, HoverCardContent } from "@/components/ui/hover-card";
+import { string } from "zod";
+import { LanguagesIcon } from "lucide-react";
 
 interface Props {
     variant?:
@@ -39,23 +41,24 @@ export const LocaleSwitcher = ({
 
     const { isLoading, isPending, onSelectChange } = useChangeLocale();
 
+    const lang = {
+        pt: [{ sigla: 'pt', name: 'Português' }, { sigla: 'en', name: 'Inglês' }],
+        en: [{ sigla: 'pt', name: 'Portuguese' }, { sigla: 'en', name: 'English' }]
+    }
     return (
         <HoverCard openDelay={250} closeDelay={250}>
             <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                    <Button
-                        disabled={isLoading}
-                        variant={variant}
-                        size={size}
-                        className={textSize}
-                    >
+
+                <DropdownMenuTrigger className="flex items-center" asChild>
+                    <DropdownMenuItem>
+                        <LanguagesIcon />
                         {isLoading ? (
                             <LoadingState className="mr-0" />
                         ) : (
-                            locale.toUpperCase()
+                            (locale === 'pt' ? lang.pt[0].name : lang.en[1].name)
                         )}
                         <span className="sr-only">{t("LANG_HOVER")}</span>
-                    </Button>
+                    </DropdownMenuItem>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align={alignDropdown}>
                     <DropdownMenuItem
@@ -64,7 +67,9 @@ export const LocaleSwitcher = ({
                         }}
                         className="cursor-pointer"
                     >
-                        PT
+                        {
+                            locale === 'pt' ? lang.pt[0].name : lang.en[0].name
+                        }
                     </DropdownMenuItem>
                     <DropdownMenuItem
                         onClick={() => {
@@ -72,12 +77,14 @@ export const LocaleSwitcher = ({
                         }}
                         className="cursor-pointer"
                     >
-                        EN
+                        {
+                            locale === 'en' ? lang.en[1].name : lang.pt[1].name
+                        }
                     </DropdownMenuItem>
                 </DropdownMenuContent>
             </DropdownMenu>
             <HoverCardContent align={alignHover}>
-                <span>{t("LANG_HOVER")}</span>
+                <span>{t("LANG_HOVER")} seilas</span>
             </HoverCardContent>
         </HoverCard>
     );

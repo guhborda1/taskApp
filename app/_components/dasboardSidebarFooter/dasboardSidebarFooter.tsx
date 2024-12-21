@@ -7,6 +7,7 @@ import { BadgeCheck, Bell, ChevronsUpDown, CreditCard, LogOut, Sparkles } from '
 import { signOut, useSession } from 'next-auth/react'
 import React from 'react'
 import { userDataInterface } from '../layout'
+import { LocaleSwitcher } from '../switchers/localeSwitch'
 
 export const DasboardSidebarFooter = () => {
     const { data: session, status } = useSession()
@@ -86,6 +87,11 @@ export const DasboardSidebarFooter = () => {
                                     <Bell />
                                     Notifications
                                 </DropdownMenuItem>
+
+                                <LocaleSwitcher />
+
+
+
                             </DropdownMenuGroup>
                             <DropdownMenuSeparator />
                             <DropdownMenuItem onClick={() => { signOut() }}>
