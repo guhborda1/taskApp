@@ -4,12 +4,12 @@ import { getUrl } from './lib/getUrl';
 import { routing } from './i18n/routing';
 import { auth } from './services/auth';
 
+const intlMiddleware = createIntlMiddleware(routing);
 
 const PUBLIC_FILE = /\.(.*)$/;
 
 
 export default auth(async (req) => {
-    const intlMiddleware = createIntlMiddleware(routing);
 
     const token = req.cookies.get('authjs.session-token');
     const pathname = req.nextUrl.pathname;

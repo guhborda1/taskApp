@@ -193,6 +193,8 @@
         "NEW_WORKSPACE_DIALOG_TITLE": "Create new workspace",
         "NEW_WORKSPACE_DIALOG_DESC": "some text"
       },
+      "ACTIONS":{"ADD_NEW_PROJECT":"Add new project"},
+      "LANG":{"PT":"Portuguese","EN":"English"},
       "SETTINGS": {
         "GENERAL": "General",
         "ACCOUNT": "Account",

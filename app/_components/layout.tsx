@@ -15,6 +15,7 @@ import {
     Map,
     MoreHorizontal,
     PieChart,
+    PlusIcon,
     Send,
     Settings2,
     Share,
@@ -77,6 +78,8 @@ import { useOrgApp } from "@/providers/OrgProvider"
 import { Sheet, SheetContent } from "@/components/ui/sheet"
 import { Button } from "@/components/ui/button"
 import { ViewVerticalIcon } from "@radix-ui/react-icons"
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
+import { useTranslations } from "next-intl"
 
 
 
@@ -91,7 +94,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     const pathNames = paths.split('/').filter(path => path)
     const router = useRouter();
     const { currentOrganization, currentTeam } = useOrgApp()
-    const [sidebarOpen, setSidebarOpen] = useState(false)
+    const t = useTranslations('')
+
     if (!session?.user)
         router.push('/auth/')
     const data = {
@@ -283,7 +287,15 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                         </SidebarMenu>
                     </SidebarGroup>
                     <SidebarGroup className="group-data-[collapsible=icon]:hidden">
-                        <SidebarGroupLabel>Projects</SidebarGroupLabel>
+                        <div className="flex items-center justify-between"><SidebarGroupLabel className="flex justify-between">Projects</SidebarGroupLabel>
+                            <TooltipProvider>
+                                <Tooltip>
+                                    <TooltipTrigger asChild><Button variant='ghost' onClick={(e) => { alert('hey') }}> <PlusIcon size={13} className="" /></Button></TooltipTrigger>
+                                    <TooltipContent>
+                                        <p>{t("SIDEBAR.ACTIONS.ADD_NEW_PROJECT")}</p>
+                                    </TooltipContent>
+                                </Tooltip>
+                            </TooltipProvider></div>
                         <SidebarMenu>
                             {data.projects.map((item) => (
                                 <SidebarMenuItem key={item.name}>

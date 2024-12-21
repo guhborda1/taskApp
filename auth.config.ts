@@ -59,11 +59,6 @@ export default {
             session.user = { ...session.user, id: user.id, }
             return session;
         },
-        async jwt({ token, user }) {
-            // Adicionar businessId no token se o usuário tiver um negócio associado
 
-
-            return token
-        },
     }
 } satisfies NextAuthConfig

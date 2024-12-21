@@ -38,6 +38,8 @@ export const LocaleSwitcher = ({
     const locale = useLocale();
 
     const t = useTranslations("COMMON");
+    const s = useTranslations("SIDEBAR");
+
 
     const { isLoading, isPending, onSelectChange } = useChangeLocale();
 
@@ -55,7 +57,7 @@ export const LocaleSwitcher = ({
                         {isLoading ? (
                             <LoadingState className="mr-0" />
                         ) : (
-                            (locale === 'pt' ? lang.pt[0].name : lang.en[1].name)
+                            (locale === 'pt' ? s('LANG.PT') : s("LANG.EN"))
                         )}
                         <span className="sr-only">{t("LANG_HOVER")}</span>
                     </DropdownMenuItem>
@@ -68,7 +70,7 @@ export const LocaleSwitcher = ({
                         className="cursor-pointer"
                     >
                         {
-                            locale === 'pt' ? lang.pt[0].name : lang.en[0].name
+                            (locale === 'pt' ? s('LANG.PT') : s("LANG.PT"))
                         }
                     </DropdownMenuItem>
                     <DropdownMenuItem
@@ -78,7 +80,7 @@ export const LocaleSwitcher = ({
                         className="cursor-pointer"
                     >
                         {
-                            locale === 'en' ? lang.en[1].name : lang.pt[1].name
+                            (locale === 'en' ? s('LANG.EN') : s("LANG.EN"))
                         }
                     </DropdownMenuItem>
                 </DropdownMenuContent>
